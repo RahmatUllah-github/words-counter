@@ -25,7 +25,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
+            <div class="container-fluid px-3">
                 <a href="/" class="navbar-brand">
                     <img src="{{ asset('images/logos/logo.png') }}" height="50" alt="CoolBrand">
                 </a>
