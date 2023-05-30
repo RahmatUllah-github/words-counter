@@ -1,0 +1,35 @@
+.bg-primary, .btn-primary {
+    background-color: #363296 !important;
+}
+
+.text-primary {
+    color: #363296 !important;
+}
+
+.bg-light-blue, .btn-light-blue {
+    background-color: #b6b4ed !important;
+}
+
+.text-light-blue {
+    color: #b6b4ed !important;
+}
+
+.bg-light-secondary {
+    background-color: #e2e2e5 !important;
+}
+
+.border {
+    border: 1px solid #363296 !important;
+}
+
+.border-white {
+    border: 1px solid #ffffff !important;
+}
+
+.form-control:focus {
+    border-color: #363296 !important;
+}
+
+.submit-btn {
+    max-width: 130px !important;
+}
