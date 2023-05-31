@@ -7,7 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'TWC') }}</title>
+    <meta name="keywords" content="words counter, character counter, sentence counter, text case converter, online tool, free tool" />
+    <meta name="description" content="The Words Counter is a free online tool that helps you count words, characters, and sentences in your text. It also offers a convenient text case converter, allowing you to easily change the case of your text to uppercase, lowercase, title case, camel case, toggle case, pascal case, snake case, kebab case. Try our Words Counter tool today and efficiently analyze and modify your text." />
+    <meta name="robots" content="index, follow" />
+    <meta name="msapplication-TileColor" content="#b6b4ed" />
+    <meta name="msapplication-TileImage" content="{{ asset('images/logos/logo.png') }}" />
+    <meta property="og:title" content="The Words Counter" />
+    <meta property="og:description" content="Free online word, character, and sentence counter tool." />
+    <meta property="og:url" content="https://www.thewordscounter.com" />
+    <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
+    <link rel="canonical" href="https://www.thewordscounter.com" />
+
+    <title>The Words Counter - Free Online Word, Character, and Sentence Counter and Text Case Converter</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logos/favicon-32x32.png') }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -27,7 +39,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid px-3">
                 <a href="/" class="navbar-brand">
-                    <img src="{{ asset('images/logos/logo.png') }}" height="50" alt="CoolBrand">
+                    <img src="{{ asset('images/logos/logo.png') }}" height="50" alt="TheWordsCounter">
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -35,12 +47,9 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav">
                         <a href="/" class="nav-item nav-link active">Home</a>
-                        <a href="/" class="nav-item nav-link">Blogs</a>
+                        {{-- <a href="/" class="nav-item nav-link">Blogs</a> --}}
                         <a href="{{ route('contactus') }}" class="nav-item nav-link">Contact</a>
                     </div>
-                    {{-- <div class="navbar-nav ms-auto">
-                        <a href="#" class="nav-item nav-link">Login</a>
-                    </div> --}}
                 </div>
             </div>
         </nav>

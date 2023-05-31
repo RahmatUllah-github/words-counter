@@ -27,21 +27,21 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="first_name" class="form-label">First Name</label>
-                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name') }}">
+                        <input type="text" class="form-control shadow-none" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name') }}">
                     </div>
                     <div class="form-group">
                         <label for="last_name" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
+                        <input type="text" class="form-control shadow-none" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
+                        <input type="email" class="form-control shadow-none" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="message" class="form-label">Message</label>
-                        <textarea name="message" class="form-control pb-2" id="message" cols="30" rows="8" placeholder="Type your message here...">{{ old('message') }}</textarea>
+                        <textarea name="message" class="form-control shadow-none pb-2" id="message" cols="30" rows="8" placeholder="Type your message here...">{{ old('message') }}</textarea>
                     </div>
                 </div>
 
