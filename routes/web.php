@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/contactus', 'contactus')->name('contactus');
+Route::view('/contactus', 'contactus')->name('contactus.index');
 
-Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus');
+Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');

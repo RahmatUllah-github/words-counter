@@ -65,7 +65,7 @@
                     <div class="navbar-nav">
                         <a href="/" class="nav-item nav-link active">Home</a>
                         {{-- <a href="/" class="nav-item nav-link">Blogs</a> --}}
-                        <a href="{{ route('contactus') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('contactus.index') }}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
             </div>

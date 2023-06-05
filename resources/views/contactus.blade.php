@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        <form action="{{ route('contactus') }}" method="POST">
+        <form action="{{ route('contactus.save') }}" method="POST">
             @csrf
 
             <div class="row">
