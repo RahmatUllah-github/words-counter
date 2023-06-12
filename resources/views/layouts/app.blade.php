@@ -24,10 +24,21 @@
     <title>The Words Counter - Free Online Word, Character, and Sentence Counter and Text Case Converter</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logos/favicon-32x32.png') }}">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,7 +49,7 @@
 
     @yield('css')
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
@@ -47,33 +58,67 @@
         gtag('js', new Date());
         gtag('config', 'G-XTF11F8N14');
         // Stream Id = 5290357554
-    </script>
+    </script> --}}
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid px-3">
-                <a href="/" class="navbar-brand">
-                    <img src="{{ asset('images/logos/logo.png') }}" height="50" alt="TheWordsCounter">
-                </a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav">
-                        <a href="/" class="nav-item nav-link active">Home</a>
-                        {{-- <a href="/" class="nav-item nav-link">Blogs</a> --}}
-                        <a href="{{ route('contactus.index') }}" class="nav-item nav-link">Contact</a>
-                    </div>
+        <div style="background-color: #47b2e4; line-height: 0; display: flex;">
+            <div class="menu-toggle" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="overlay"></div>
+            <div class="nav_width">
+                <h1 class="d-md-none" style="font-size: 3rem;"><a style="font-size: 3rem;"
+                        href="index.html">Br<span>a</span>nd</a></h1>
+                <div class="container">
+                    <nav>
+                        <h1 style="font-size: 3rem;" class="brand d-md-block d-none"><a style="font-size: 3rem;"
+                                href="index.html">Br<span>a</span>nd</a></h1>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="blog.html">Blogs</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-        </nav>
+        </div>
 
         <main class="py-4" @auth style="margin-left: 20%; width: 80%" @endauth>
             @yield('content')
         </main>
+
+
+        <footer class="footer">
+            <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+                <div class="wave" id="wave4"></div>
+            </div>
+            <ul class="social-icon">
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a></li>
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a></li>
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a></li>
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a></li>
+            </ul>
+            <ul class="menu">
+                <li class="menu__item"><a class="menu__link" href="index.html">Home</a></li>
+                <li class="menu__item"><a class="menu__link" href="blog.html">Blogs</a></li>
+                <li class="menu__item"><a class="menu__link" href="contact.html">contact</a></li>
+
+            </ul>
+            <p class="text-center">&copy;{{ date('Y') }} {{ config('app.name') }} | All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -82,8 +127,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function() {
+        var open = $('#hamburger');
+        var changeIcon = true;
+
+        open.on("click", function() {
+            var overlay = $('.overlay');
+            var nav = $('nav');
+            var icon = $('.menu-toggle i');
+
+            overlay.toggleClass("menu-open");
+            nav.toggleClass("menu-open");
+
+            if (changeIcon) {
+                icon.removeClass("fa-bars");
+                icon.addClass("fa-times");
+
+                changeIcon = false;
+            } else {
+                icon.removeClass("fa-times");
+                icon.addClass("fa-bars");
+                changeIcon = true;
+            }
+        });
+    });
 </script>
 @yield('script')
 
