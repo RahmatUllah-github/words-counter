@@ -5,19 +5,19 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="box_div d-flex flex-wrap text-secondary">
-                            <button class="box text-secondary">
+                            <button class="box text-secondary" @click="undo">
                                 <i class="fas fa-undo"></i>
                                 <span>Undo</span>
                             </button>
-                            <button class="box text-secondary">
+                            <button class="box text-secondary" @click="redo">
                                 <i class="fas fa-redo"></i>
                                 <span>Redo</span>
                             </button>
-                            <button class="box text-secondary">
+                            <button class="box text-secondary" @click="copy">
                                 <i class="fas fa-copy"></i>
                                 <span>Copy</span>
                             </button>
-                            <button class="box text-secondary">
+                            <button class="box text-secondary" @click="clear">
                                 <i class="fa fa-eraser"></i>
                                 <span>Clear All</span>
                             </button>
@@ -25,23 +25,32 @@
                                 <span style="font-size: 1rem; cursor: pointer;" class="dropdown-toggle"
                                     data-bs-toggle="dropdown">Case Change</span>
                                 <div class="dropdown-menu p-0">
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('uppercase')">Upper Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('uppercase')">Upper Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('lowercase')">Lower Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('lowercase')">Lower Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('titlecase')">Title Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('titlecase')">Title Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('sentencecase')">Sentence Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('sentencecase')">Sentence Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('togglecase')">Toggle Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('togglecase')">Toggle Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('camelcase')">Camel Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('camelcase')">Camel Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('pascalcase')">Pascal Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('pascalcase')">Pascal Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('snakecase')">Snake Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('snakecase')">Snake Case</a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item" @click="changeCase('kebabcase')">Kebab Case</a>
+                                    <a href="javascript:void(0)" class="dropdown-item"
+                                        @click="changeCase('kebabcase')">Kebab Case</a>
                                 </div>
                             </div>
                             <div class="box_sub">
@@ -76,7 +85,7 @@
                                         <p class="social_icon">Facebook</p>
                                     </div>
                                     <div class="bot-bar-number">
-                                        250/250
+                                        {{ facebookCount }}/{{ facebookTotal }}
                                     </div>
                                 </div>
                                 <div class="col-bot-bar">
@@ -84,7 +93,7 @@
                                         <p class="social_icon">Twitter</p>
                                     </div>
                                     <div class="bot-bar-number">
-                                        <span class="chars-twitter">280</span>/280
+                                        {{ twitterCount }}/{{ twitterTotal }}
                                     </div>
                                 </div>
                                 <div class="col-bot-bar">
@@ -92,7 +101,7 @@
                                         <p class="social_icon">Google</p>
                                     </div>
                                     <div class="bot-bar-number">
-                                        <span class="chars-google">300</span>/300
+                                        {{ googleCount }}/{{ googleTotal }}
                                     </div>
                                 </div>
                             </div>
@@ -101,130 +110,241 @@
                     <div class="col-lg-3">
                         <div class="ms-lg-4 ms-xl-3 righ_side_border">
                             <div>
-                                <p class="box_heading">Details</p>
+                                <p class="box_heading">Characters Details</p>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="specialCharactersCount" class="right_side_box">
+                                <p class="margin_bottom">Special Characters</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ specialCharactersCount }} ({{ percentageSpecialCharacters }}%)</span>
                                 </div>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="count_a" class="right_side_box">
+                                <p class="margin_bottom">A Counts</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ count_a }} ({{ percentage_a }}%)</span>
                                 </div>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="count_b" class="right_side_box">
+                                <p class="margin_bottom">B Counts</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ count_b }} ({{ percentage_b }}%)</span>
                                 </div>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="count_c" class="right_side_box">
+                                <p class="margin_bottom">C Counts</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ count_c }} ({{ percentage_c }}%)</span>
                                 </div>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="count_d" class="right_side_box">
+                                <p class="margin_bottom">D Count</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ count_d }} ({{ percentage_d }}%)</span>
                                 </div>
                             </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
+                            <div v-show="count_e" class="right_side_box">
+                                <p class="margin_bottom">E Count</p>
                                 <div class="circle">
-                                    <span class="digit">7 (10%)</span>
+                                    <span class="digit">{{ count_e }} ({{ percentage_e }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_f" class="right_side_box">
+                                <p class="margin_bottom">F Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_f }} ({{ percentage_f }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_g" class="right_side_box">
+                                <p class="margin_bottom">G Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_g }} ({{ percentage_g }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_h" class="right_side_box">
+                                <p class="margin_bottom">H Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_h }} ({{ percentage_h }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_i" class="right_side_box">
+                                <p class="margin_bottom">I Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_i }} ({{ percentage_i }}%)</span>
                                 </div>
                             </div>
 
+                            <div v-show="count_j" class="right_side_box">
+                                <p class="margin_bottom">J Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_j }} ({{ percentage_j }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_k" class="right_side_box">
+                                <p class="margin_bottom">K Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_k }} ({{ percentage_k }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_l" class="right_side_box">
+                                <p class="margin_bottom">L Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_l }} ({{ percentage_l }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_m" class="right_side_box">
+                                <p class="margin_bottom">M Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_m }} ({{ percentage_m }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_n" class="right_side_box">
+                                <p class="margin_bottom">N Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_n }} ({{ percentage_n }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_o" class="right_side_box">
+                                <p class="margin_bottom">O Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_o }} ({{ percentage_o }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_p" class="right_side_box">
+                                <p class="margin_bottom">P Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_p }} ({{ percentage_p }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_q" class="right_side_box">
+                                <p class="margin_bottom">Q Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_q }} ({{ percentage_q }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_r" class="right_side_box">
+                                <p class="margin_bottom">R Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_r }} ({{ percentage_r }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_s" class="right_side_box">
+                                <p class="margin_bottom">S Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_s }} ({{ percentage_s }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_t" class="right_side_box">
+                                <p class="margin_bottom">T Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_t }} ({{ percentage_t }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_u" class="right_side_box">
+                                <p class="margin_bottom">U Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_u }} ({{ percentage_u }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_v" class="right_side_box">
+                                <p class="margin_bottom">V Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_v }} ({{ percentage_v }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_w" class="right_side_box">
+                                <p class="margin_bottom">W Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_w }} ({{ percentage_w }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_x" class="right_side_box">
+                                <p class="margin_bottom">X Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_x }} ({{ percentage_x }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_y" class="right_side_box">
+                                <p class="margin_bottom">Y Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_y }} ({{ percentage_y }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_z" class="right_side_box">
+                                <p class="margin_bottom">Z Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_z }} ({{ percentage_z }}%)</span>
+                                </div>
+                            </div>
                         </div>
+
+
                         <div class="ms-lg-4 ms-xl-3 righ_side_border">
                             <div>
-                                <p class="box_heading">Details</p>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
+                                <p class="box_heading">Numeric Character Details</p>
                             </div>
 
+                            <div v-show="count_0" class="right_side_box">
+                                <p class="margin_bottom">0 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_0 }} ({{ percentage_0 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_1" class="right_side_box">
+                                <p class="margin_bottom">1 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_1 }} ({{ percentage_1 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_2" class="right_side_box">
+                                <p class="margin_bottom">2 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_2 }} ({{ percentage_2 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_z" class="right_side_box">
+                                <p class="margin_bottom">Z Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_z }} ({{ percentage_z }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_3" class="right_side_box">
+                                <p class="margin_bottom">3 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_3 }} ({{ percentage_3 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_4" class="right_side_box">
+                                <p class="margin_bottom">4 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_4 }} ({{ percentage_4 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_5" class="right_side_box">
+                                <p class="margin_bottom">5 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_5 }} ({{ percentage_5 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_6" class="right_side_box">
+                                <p class="margin_bottom">6 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_6 }} ({{ percentage_6 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_8" class="right_side_box">
+                                <p class="margin_bottom">8 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_8 }} ({{ percentage_8 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_9" class="right_side_box">
+                                <p class="margin_bottom">9 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_9 }} ({{ percentage_9 }}%)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ms-lg-4 ms-xl-3 righ_side_border mb-4">
-                            <div>
-                                <p class="box_heading">Details</p>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
-                            <div class="right_side_box">
-                                <p class="margin_bottom">words</p>
-                                <div class="circle">
-                                    <span class="digit">7 (10%)</span>
-                                </div>
-                            </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -283,223 +403,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- <div class="container px-2 px-md-3 px-lg-5">
-        <div class="p-3 mx-0 my-3 bg-light-blue text-white rounded-0 row">
-            <div class="col">
-                <h3>
-                    <span>{{ wordsCount }}</span>
-                    <span> Words</span>
-                </h3>
-            </div>
-            <div class="col">
-                <h3>
-                    <span>{{ charactersCount }}</span>
-                    <span> Characters</span>
-                </h3>
-            </div>
-            <div class="col">
-                <h3>
-                    <span>{{ whiteSpacesCount }}</span>
-                    <span> White Spaces</span>
-                </h3>
-            </div>
-            <div class="col">
-                <h3>
-                    <span>{{ sentencesCount }}</span>
-                    <span> Sentences</span>
-                </h3>
-            </div>
-        </div>
-
-        <div class="p-3 m-0 bg-primary text-white rounded-top d-flex justify-content-around flex-wrap">
-            <div class="dropdown mb-1 mb-md-0">
-                <button class="btn btn-white shadow-none text-white dropdown-toggle border-white" type="button"
-                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Change Case
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" @click="changeCase('uppercase')" href="javascript:void(0)">Uppercase</a>
-                    <a class="dropdown-item" @click="changeCase('lowercase')" href="javascript:void(0)">Lowercase</a>
-                    <a class="dropdown-item" @click="changeCase('titlecase')" href="javascript:void(0)">Title Case</a>
-                    <a class="dropdown-item" @click="changeCase('sentencecase')" href="javascript:void(0)">Sentance Case</a>
-                    <a class="dropdown-item" @click="changeCase('togglecase')" href="javascript:void(0)">Toggle Case</a>
-                    <a class="dropdown-item" @click="changeCase('camelcase')" href="javascript:void(0)">Camel Case</a>
-                    <a class="dropdown-item" @click="changeCase('pascalcase')" href="javascript:void(0)">Pascal Case</a>
-                    <a class="dropdown-item" @click="changeCase('snakecase')" href="javascript:void(0)">Snake Case</a>
-                    <a class="dropdown-item" @click="changeCase('kebabcase')" href="javascript:void(0)">Kebab Case</a>
-                </div>
-            </div>
-            <div class="mb-1 mb-md-0">
-                <button class="btn btn-white shadow-none text-white border-white" type="button" @click="undo"
-                    :disabled="disableUndo">
-                    <span class="mr-1">Undo</span> <i class="fas fa-undo"></i>
-                </button>
-            </div>
-            <div class="mb-1 mb-md-0">
-                <button class="btn btn-white shadow-none text-white border-white" type="button" @click="redo"
-                    :disabled="disableRedo">
-                    <span class="mr-1">Redo</span> <i class="fas fa-redo"></i>
-                </button>
-            </div>
-            <div class="mb-1 mb-md-0">
-                <button class="btn btn-white shadow-none text-white border-white" type="button" @click="copy"
-                    :disabled="text == ''">
-                    <span class="mr-1">Copy</span> <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <div class="mb-1 mb-md-0">
-                <button class="btn btn-white shadow-none text-white border-white" type="button" @click="clear">
-                    <span class="mr-1">Clear All</span> <i class="fas fa-eraser"></i>
-                </button>
-            </div>
-
-        </div>
-
-        <div class="form-group m-0">
-            <textarea class="form-control rounded-0 shadow-none" placeholder="Type or paste your text" v-model="text" col
-                mb-1 mb-md-0s="30" @keydown="handleKeyDown" rows="10"></textarea>
-        </div>
-
-        <div class="p-2 bg-light-secondary rounded-bottom d-flex justify-content-around flex-wrap mb-4">
-            <div class="facebook">
-                <h4>Facebook <span>{{ facebookCount }}</span>/250</h4>
-            </div>
-            <div class="twitter">
-                <h4>Twitter <span>{{ twitterCount }}</span>/280</h4>
-            </div>
-            <div class="google">
-                <h4>Google <span>{{ googleCount }}</span>/300</h4>
-            </div>
-        </div>
-
-        <div class="bg-light-secondary rounded p-4">
-            <ul>
-                <li class="row">
-                    <span class="col-4 col-md-3 px-0">Special Characters counts:</span> <span class="col-2 pl-0">{{
-                        specialCharactersCount }}</span>
-                </li>
-            </ul>
-
-            <ul>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">A counts:</span> <span class="col-2 pl-0">{{ aCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">B counts:</span> <span class="col-2 pl-0">{{ bCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">C counts:</span> <span class="col-2 pl-0">{{ cCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">D counts:</span> <span class="col-2 pl-0">{{ dCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">E counts:</span> <span class="col-2 pl-0">{{ eCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">F counts:</span> <span class="col-2 pl-0">{{ fCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">G counts:</span> <span class="col-2 pl-0">{{ gCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">H counts:</span> <span class="col-2 pl-0">{{ hCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">I counts:</span> <span class="col-2 pl-0">{{ iCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">J counts:</span> <span class="col-2 pl-0">{{ jCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">K counts:</span> <span class="col-2 pl-0">{{ kCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">L counts:</span> <span class="col-2 pl-0">{{ lCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">M counts:</span> <span class="col-2 pl-0">{{ mCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">N counts:</span> <span class="col-2 pl-0">{{ nCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">O counts:</span> <span class="col-2 pl-0">{{ oCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">P counts:</span> <span class="col-2 pl-0">{{ pCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">Q counts:</span> <span class="col-2 pl-0">{{ qCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">R counts:</span> <span class="col-2 pl-0">{{ rCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">S counts:</span> <span class="col-2 pl-0">{{ sCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">T counts:</span> <span class="col-2 pl-0">{{ tCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">U counts:</span> <span class="col-2 pl-0">{{ uCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">V counts:</span> <span class="col-2 pl-0">{{ vCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">W counts:</span> <span class="col-2 pl-0">{{ wCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">X counts:</span> <span class="col-2 pl-0">{{ xCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">Y counts:</span> <span class="col-2 pl-0">{{ yCount }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">Z counts:</span> <span class="col-2 pl-0">{{ zCount }}</span>
-                </li>
-            </ul>
-
-
-            <ul>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">0 counts:</span> <span class="col-2 pl-0">{{ count_0 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">1 counts:</span> <span class="col-2 pl-0">{{ count_1 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">2 counts:</span> <span class="col-2 pl-0">{{ count_2 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">3 counts:</span> <span class="col-2 pl-0">{{ count_3 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">4 counts:</span> <span class="col-2 pl-0">{{ count_4 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">5 counts:</span> <span class="col-2 pl-0">{{ count_5 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">6 counts:</span> <span class="col-2 pl-0">{{ count_6 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">7 counts:</span> <span class="col-2 pl-0">{{ count_7 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">8 counts:</span> <span class="col-2 pl-0">{{ count_8 }}</span>
-                </li>
-                <li class="row">
-                    <span class="col-4 col-md-1 px-0">9 counts:</span> <span class="col-2 pl-0">{{ count_9 }}</span>
-                </li>
-
-
-            </ul>
-        </div>
-    </div> -->
 </template>
 
 <script>
@@ -513,51 +416,9 @@ export default {
             currentValue: '',
             undoHistory: [],
             redoHistory: [],
-            wordsCount: 0,
-            charactersCount: 0,
-            whiteSpacesCount: 0,
-            sentencesCount: 0,
-            paragraphsCount: 0,
-            facebookCount: 0,
-            twitterCount: 0,
-            googleCount: 0,
-            specialCharactersCount: 0,
-            aCount: 0,
-            bCount: 0,
-            cCount: 0,
-            dCount: 0,
-            eCount: 0,
-            fCount: 0,
-            gCount: 0,
-            hCount: 0,
-            iCount: 0,
-            jCount: 0,
-            kCount: 0,
-            lCount: 0,
-            mCount: 0,
-            nCount: 0,
-            oCount: 0,
-            pCount: 0,
-            qCount: 0,
-            rCount: 0,
-            sCount: 0,
-            tCount: 0,
-            uCount: 0,
-            vCount: 0,
-            wCount: 0,
-            xCount: 0,
-            yCount: 0,
-            zCount: 0,
-            count_0: 0,
-            count_1: 0,
-            count_2: 0,
-            count_3: 0,
-            count_4: 0,
-            count_5: 0,
-            count_6: 0,
-            count_7: 0,
-            count_8: 0,
-            count_9: 0,
+            facebookTotal: 250,
+            twitterTotal: 280,
+            googleTotal: 300,
             disableUndo: true,
             disableRedo: true,
         }
@@ -571,194 +432,299 @@ export default {
                 this.undoHistory.push(this.currentValue);
                 this.redoHistory = [];
             }
-            this.updateCounts();
             this.updateButtonStates();
         }
+    },
+    computed: {
+        wordsCount() {
+            return this.text.trim().split(/\s+/).filter(Boolean).length;
+        },
+        charactersCount() {
+            return this.text.length;
+        },
+        whiteSpacesCount() {
+            return this.text.split(' ').length - 1;
+        },
+        sentencesCount() {
+            return this.text.split(/[.!?]+/).filter(Boolean).length;
+        },
+        paragraphsCount() {
+            return this.text.split('\n').filter(Boolean).length;
+        },
+        facebookCount() {
+            return this.facebookTotal - this.charactersCount;
+        },
+        twitterCount() {
+            return this.twitterTotal - this.charactersCount;
+        },
+        googleCount() {
+            return this.googleTotal - this.charactersCount;
+        },
+        specialCharactersCount() {
+            return (this.text.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
+        },
+        percentageSpecialCharacters() {
+            const percentage = (this.specialCharactersCount / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_a() {
+            return (this.text.match(/a/gi) || []).length;
+        },
+        percentage_a() {
+            const percentage = (this.count_a / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_b() {
+            return (this.text.match(/b/gi) || []).length;
+        },
+        percentage_b() {
+            const percentage = (this.count_b / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_c() {
+            return (this.text.match(/c/gi) || []).length;
+        },
+        percentage_c() {
+            const percentage = (this.count_c / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_d() {
+            return (this.text.match(/d/gi) || []).length;
+        },
+        percentage_d() {
+            const percentage = (this.count_d / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_e() {
+            return (this.text.match(/e/gi) || []).length;
+        },
+        percentage_e() {
+            const percentage = (this.count_e / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_f() {
+            return (this.text.match(/f/gi) || []).length;
+        },
+        percentage_f() {
+            const percentage = (this.count_f / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_g() {
+            return (this.text.match(/g/gi) || []).length;
+        },
+        percentage_g() {
+            const percentage = (this.count_g / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_h() {
+            return (this.text.match(/h/gi) || []).length;
+        },
+        percentage_h() {
+            const percentage = (this.count_h / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_i() {
+            return (this.text.match(/i/gi) || []).length;
+        },
+        percentage_i() {
+            const percentage = (this.count_i / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_j() {
+            return (this.text.match(/j/gi) || []).length;
+        },
+        percentage_j() {
+            const percentage = (this.count_j / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_k() {
+            return (this.text.match(/k/gi) || []).length;
+        },
+        percentage_k() {
+            const percentage = (this.count_k / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_l() {
+            return (this.text.match(/l/gi) || []).length;
+        },
+        percentage_l() {
+            const percentage = (this.count_l / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_m() {
+            return (this.text.match(/m/gi) || []).length;
+        },
+        percentage_m() {
+            const percentage = (this.count_m / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_n() {
+            return (this.text.match(/n/gi) || []).length;
+        },
+        percentage_n() {
+            const percentage = (this.count_n / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_o() {
+            return (this.text.match(/o/gi) || []).length;
+        },
+        percentage_o() {
+            const percentage = (this.count_o / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_p() {
+            return (this.text.match(/p/gi) || []).length;
+        },
+        percentage_p() {
+            const percentage = (this.count_p / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_q() {
+            return (this.text.match(/q/gi) || []).length;
+        },
+        percentage_q() {
+            const percentage = (this.count_q / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_r() {
+            return (this.text.match(/r/gi) || []).length;
+        },
+        percentage_r() {
+            const percentage = (this.count_r / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_s() {
+            return (this.text.match(/s/gi) || []).length;
+        },
+        percentage_s() {
+            const percentage = (this.count_s / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_t() {
+            return (this.text.match(/t/gi) || []).length;
+        },
+        percentage_t() {
+            const percentage = (this.count_t / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_u() {
+            return (this.text.match(/u/gi) || []).length;
+        },
+        percentage_u() {
+            const percentage = (this.count_u / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_v() {
+            return (this.text.match(/v/gi) || []).length;
+        },
+        percentage_v() {
+            const percentage = (this.count_v / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_w() {
+            return (this.text.match(/w/gi) || []).length;
+        },
+        percentage_w() {
+            const percentage = (this.count_w / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_x() {
+            return (this.text.match(/x/gi) || []).length;
+        },
+        percentage_x() {
+            const percentage = (this.count_x / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_y() {
+            return (this.text.match(/y/gi) || []).length;
+        },
+        percentage_y() {
+            const percentage = (this.count_y / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_z() {
+            return (this.text.match(/z/gi) || []).length;
+        },
+        percentage_z() {
+            const percentage = (this.count_z / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_0() {
+            return (this.text.match(/0/gi) || []).length;
+        },
+        percentage_0() {
+            const percentage = (this.count_0 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_1() {
+            return (this.text.match(/1/gi) || []).length;
+        },
+        percentage_1() {
+            const percentage = (this.count_1 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_2() {
+            return (this.text.match(/2/gi) || []).length;
+        },
+        percentage_2() {
+            const percentage = (this.count_2 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_3() {
+            return (this.text.match(/3/gi) || []).length;
+        },
+        percentage_3() {
+            const percentage = (this.count_3 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_4() {
+            return (this.text.match(/4/gi) || []).length;
+        },
+        percentage_4() {
+            const percentage = (this.count_4 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_5() {
+            return (this.text.match(/5/gi) || []).length;
+        },
+        percentage_5() {
+            const percentage = (this.count_5 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_6() {
+            return (this.text.match(/6/gi) || []).length;
+        },
+        percentage_6() {
+            const percentage = (this.count_6 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_7() {
+            return (this.text.match(/7/gi) || []).length;
+        },
+        percentage_7() {
+            const percentage = (this.count_7 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_8() {
+            return (this.text.match(/8/gi) || []).length;
+        },
+        percentage_8() {
+            const percentage = (this.count_8 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
+        count_9() {
+            return (this.text.match(/9/gi) || []).length;
+        },
+        percentage_9() {
+            const percentage = (this.count_9 / (this.charactersCount - this.whiteSpacesCount)) * 100;
+            return percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1);
+        },
     },
     methods: {
         updateButtonStates() {
             this.disableUndo = this.undoHistory.length === 0;
             this.disableRedo = this.redoHistory.length === 0;
         },
-        updateCounts() {
-            this.wordsCount = this.text.trim().split(/\s+/).filter(Boolean).length;
-            this.charactersCount = this.text.length;
-            this.whiteSpacesCount = this.text.split(' ').length - 1;
-            this.sentencesCount = this.text.split(/[.!?]+/).filter(Boolean).length;
-            this.facebookCount = Math.min(250, this.charactersCount);
-            this.twitterCount = Math.min(280, this.charactersCount);
-            this.googleCount = Math.min(300, this.charactersCount);
-            this.specialCharactersCount = (this.text.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
-            this.aCount = (this.text.match(/a/gi) || []).length;
-            this.bCount = (this.text.match(/b/gi) || []).length;
-            this.cCount = (this.text.match(/c/gi) || []).length;
-            this.dCount = (this.text.match(/d/gi) || []).length;
-            this.eCount = (this.text.match(/e/gi) || []).length;
-            this.fCount = (this.text.match(/f/gi) || []).length;
-            this.gCount = (this.text.match(/g/gi) || []).length;
-            this.hCount = (this.text.match(/h/gi) || []).length;
-            this.iCount = (this.text.match(/i/gi) || []).length;
-            this.jCount = (this.text.match(/j/gi) || []).length;
-            this.kCount = (this.text.match(/k/gi) || []).length;
-            this.lCount = (this.text.match(/l/gi) || []).length;
-            this.mCount = (this.text.match(/m/gi) || []).length;
-            this.nCount = (this.text.match(/n/gi) || []).length;
-            this.oCount = (this.text.match(/o/gi) || []).length;
-            this.pCount = (this.text.match(/p/gi) || []).length;
-            this.qCount = (this.text.match(/q/gi) || []).length;
-            this.rCount = (this.text.match(/r/gi) || []).length;
-            this.sCount = (this.text.match(/s/gi) || []).length;
-            this.tCount = (this.text.match(/t/gi) || []).length;
-            this.uCount = (this.text.match(/u/gi) || []).length;
-            this.vCount = (this.text.match(/v/gi) || []).length;
-            this.wCount = (this.text.match(/w/gi) || []).length;
-            this.xCount = (this.text.match(/x/gi) || []).length;
-            this.yCount = (this.text.match(/y/gi) || []).length;
-            this.zCount = (this.text.match(/z/gi) || []).length;
-            this.count_0 = (this.text.match(/0/g) || []).length;
-            this.count_1 = (this.text.match(/1/g) || []).length;
-            this.count_2 = (this.text.match(/2/g) || []).length;
-            this.count_3 = (this.text.match(/3/g) || []).length;
-            this.count_4 = (this.text.match(/4/g) || []).length;
-            this.count_5 = (this.text.match(/5/g) || []).length;
-            this.count_6 = (this.text.match(/6/g) || []).length;
-            this.count_7 = (this.text.match(/7/g) || []).length;
-            this.count_8 = (this.text.match(/8/g) || []).length;
-            this.count_9 = (this.text.match(/9/g) || []).length;
-        },
-        // updateCounts() {
-        //     const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        //     const length = this.text.length;
-        //     const words = $.trim(this.text).split(/\s+/);
-        //     const sentences = this.text.split(/[.?!]+/);
-
-        //     this.clearAllCounts();
-
-        //     this.wordsCount = this.text.length == 0 ? 0 : words.length;
-        //     this.charactersCount = length;
-        //     this.whiteSpacesCount = (this.text.match(/\s/g) || []).length;
-        //     this.sentencesCount = sentences.length - 1;
-        //     this.facebookCount = 250 - this.charactersCount;
-        //     this.twitterCount = 280 - this.charactersCount;
-        //     this.googleCount = 300 - this.charactersCount;
-
-        //     for (var i = 0; i < length; i++) {
-
-        //         if (specialCharacters.test(this.text[i])) {
-        //             this.specialCharactersCount++;
-        //         }
-
-        //         if (this.text[i].toLowerCase() === 'a') {
-        //             this.aCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'b') {
-        //             this.bCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'c') {
-        //             this.cCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'd') {
-        //             this.dCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'e') {
-        //             this.eCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'f') {
-        //             this.fCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'g') {
-        //             this.gCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'h') {
-        //             this.hCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'i') {
-        //             this.iCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'j') {
-        //             this.jCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'k') {
-        //             this.kCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'l') {
-        //             this.lCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'm') {
-        //             this.mCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'n') {
-        //             this.nCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'o') {
-        //             this.oCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'p') {
-        //             this.pCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'q') {
-        //             this.qCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'r') {
-        //             this.rCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 's') {
-        //             this.sCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 't') {
-        //             this.tCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'u') {
-        //             this.uCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'v') {
-        //             this.vCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'w') {
-        //             this.wCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'x') {
-        //             this.xCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'y') {
-        //             this.yCount++;
-        //         }
-        //         if (this.text[i].toLowerCase() === 'z') {
-        //             this.zCount++;
-        //         }
-
-        //         if (this.text[i] === '0') {
-        //             this.count_0++;
-        //         }
-        //         if (this.text[i] === '1') {
-        //             this.count_1++;
-        //         }
-        //         if (this.text[i] === '2') {
-        //             this.count_2++;
-        //         }
-        //         if (this.text[i] === '3') {
-        //             this.count_3++;
-        //         }
-        //         if (this.text[i] === '4') {
-        //             this.count_4++;
-        //         }
-        //         if (this.text[i] === '5') {
-        //             this.count_5++;
-        //         }
-        //         if (this.text[i] === '6') {
-        //             this.count_6++;
-        //         }
-        //         if (this.text[i] === '7') {
-        //             this.count_7++;
-        //         }
-        //         if (this.text[i] === '8') {
-        //             this.count_8++;
-        //         }
-        //         if (this.text[i] === '9') {
-        //             this.count_9++;
-        //         }
-        //     }
-        // },
         undo() {
             console.log(this.undoHistory);
             if (this.undoHistory.length > 1) {
@@ -847,55 +813,8 @@ export default {
             this.undoHistory = [];
             this.redoHistory = [];
             this.updateButtonStates();
-            this.updateCounts();
 
             toast.success('Everything cleared successfully');
-        },
-        clearAllCounts() {
-            this.wordsCount = 0;
-            this.charactersCount = 0;
-            this.whiteSpacesCount = 0;
-            this.sentencesCount = 0;
-            this.facebookCount = 0;
-            this.twitterCount = 0;
-            this.googleCount = 0;
-            this.specialCharactersCount = 0;
-            this.aCount = 0;
-            this.bCount = 0;
-            this.cCount = 0;
-            this.dCount = 0;
-            this.eCount = 0;
-            this.fCount = 0;
-            this.gCount = 0;
-            this.hCount = 0;
-            this.iCount = 0;
-            this.jCount = 0;
-            this.kCount = 0;
-            this.lCount = 0;
-            this.mCount = 0;
-            this.nCount = 0;
-            this.oCount = 0;
-            this.pCount = 0;
-            this.qCount = 0;
-            this.rCount = 0;
-            this.sCount = 0;
-            this.tCount = 0;
-            this.uCount = 0;
-            this.vCount = 0;
-            this.wCount = 0;
-            this.xCount = 0;
-            this.yCount = 0;
-            this.zCount = 0;
-            this.count_0 = 0;
-            this.count_1 = 0;
-            this.count_2 = 0;
-            this.count_3 = 0;
-            this.count_4 = 0;
-            this.count_5 = 0;
-            this.count_6 = 0;
-            this.count_7 = 0;
-            this.count_8 = 0;
-            this.count_9 = 0;
         }
     }
 }

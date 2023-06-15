@@ -19,6 +19,10 @@ a:hover {
     color: #fff !important
 }
 
+a.dropdown-item {
+    color:#1e2125 !important;
+}
+
 .nav_width{
 	max-width: 120rem;
 	width: 90%;
@@ -282,7 +286,7 @@ font-weight: 700;
     font-weight: 300;
 }
 .circle {
-    background-color: #8d979c;
+    background-color: #5a6164;
     display: flex;
     justify-content: center;
     align-items: center;
