@@ -15,6 +15,10 @@ a{
 	font-size: 1.1rem;
 }
 
+a:hover {
+    color: #fff !important
+}
+
 .nav_width{
 	max-width: 120rem;
 	width: 90%;
@@ -177,7 +181,12 @@ nav ul li a:hover::after{
     font-weight: 500;
   }
 
-  .box_div {
+.dropdown-item:focus, .dropdown-item:hover, .dropdown-item:active {
+    color: #1e2125;
+    background-color: #e9ecef;
+}
+
+.box_div {
     justify-content: start;
     background: #dee2e6;
     padding: 5px;
@@ -477,15 +486,12 @@ input.form-control.rounded {
    }
 
 .search input{
-
 	height: 60px;
 	text-indent: 25px;
 	border: 2px solid #d6d4d4;
 	font-family: 'Playfair', serif;
     font-weight: 500;
-
-
-   }
+}
 
 
 .search input:focus{

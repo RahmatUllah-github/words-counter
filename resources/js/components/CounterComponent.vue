@@ -56,7 +56,7 @@
                                 <li>
                                     <p>Characters</p><span class="chars">{{ charactersCount }}</span>
                                 </li>
-                                <li>
+                                <li class="px-3">
                                     <p>White Spaces</p><span class="paras">{{ whiteSpacesCount }}</span>
                                 </li>
                                 <li>
