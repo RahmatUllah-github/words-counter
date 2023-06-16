@@ -98,8 +98,8 @@
             </ul>
             <ul class="menu">
                 <li class="menu__item"><a class="menu__link" href="{{ route('web') }}">Home</a></li>
-                <li class="menu__item"><a class="menu__link" href="blog.html">Blogs</a></li>
-                <li class="menu__item"><a class="menu__link" href="contact.html">contact</a></li>
+                <li class="menu__item"><a class="menu__link" href="{{ route('blogs.index') }}">Blogs</a></li>
+                <li class="menu__item"><a class="menu__link" href="{{ route('contactus.index') }}">contact</a></li>
 
             </ul>
             <p class="text-center">&copy;{{ date('Y') }} {{ config('app.name') }} | All Rights Reserved</p>
