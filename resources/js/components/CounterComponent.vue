@@ -351,56 +351,54 @@
             </div>
         </div>
 
-        <div>
-            <div class="container text-secondary">
-                <div>
-                    <h3 class="h3_heading">What Is Character Count?</h3>
-                    <p class="p_para">Although some think that character count is the total number of letters in a text, it
-                        is
-                        the total count of all characters, including spaces. It is mostly needed when a text or a document
-                        must
-                        stay within certain numbers of characters. Additionally, some translators use character count
-                        without
-                        spaces to determine the price of a translation job.</p>
-                    <h3 class="h3_heading">What Is the Difference Between Word Count and Character Count? </h3>
-                    <p class="p_para">Word count is the number of words in a text, while the character count is the number
-                        of
-                        all characters in a text. If you want to learn how many characters in a text, you need to count all
-                        the
-                        characters, including special characters.</p>
-                    <h3 class="h3_heading">How Can You Count Characters?</h3>
-                    <p class="p_para">To find out the number of characters in the text, you can open your document with Word
-                        or
-                        LibreOffice. Alternatively, you can use an online tool like the Character Counter to count the
-                        number of
-                        characters in a document.</p>
-                    <h3 class="h3_heading">Does Character Count Include Spaces?</h3>
-                    <p class="p_para">Yes. Character count without spaces is another metric that is completely different
-                        from
-                        the character count.</p>
-                    <h3 class="h3_heading">How Can I Check My Character Count Online?</h3>
-                    <p class="p_para">With the Character Calculator, you can check character count online easily and for
-                        free.
-                    </p>
-                    <h3 class="h3_heading">What Is the Character Calculator?</h3>
-                    <p class="p_para">Character Counter is an online character count calculator tool, which is simple and
-                        free
-                        to use. It is especially useful for services like Twitter and Reddit.</p>
-                    <h3 class="h3_heading">How Do You Use the Character Calculator?</h3>
-                    <p class="p_para">Type in or copy and paste your text to the input above. Then, the Character Calculator
-                        will show you the character count, with or without spaces, as well as the word count.</p>
-                    <h3 class="h3_heading">How Do I Do a Character Count in Word for Mac?</h3>
-                    <p class="p_para">Within the "Review" tab, click to "Word Count" icon, next to "Spelling & Grammar".
-                        You'll
-                        see statistics for both Characters (no spaces) and Characters (with spaces).</p>
-                    <h3 class="h3_heading">How Many Characters Are in a Text Message?</h3>
-                    <p class="p_para">For a single SMS, the character limit is 160 characters.</p>
-                    <h3 class="h3_heading">How Many Characters in a Tweet?</h3>
-                    <p class="p_para">The original character length used to be 140 characters for a tweet as Twitter began
-                        its
-                        operations as an SMS based service. In 2023, the answer to the question of how many characters in a
-                        tweet is 280.</p>
-                </div>
+        <div class="container text-secondary mt-5">
+            <div>
+                <h3 class="h3_heading">What Is Character Count?</h3>
+                <p class="p_para">Although some think that character count is the total number of letters in a text, it
+                    is
+                    the total count of all characters, including spaces. It is mostly needed when a text or a document
+                    must
+                    stay within certain numbers of characters. Additionally, some translators use character count
+                    without
+                    spaces to determine the price of a translation job.</p>
+                <h3 class="h3_heading">What Is the Difference Between Word Count and Character Count? </h3>
+                <p class="p_para">Word count is the number of words in a text, while the character count is the number
+                    of
+                    all characters in a text. If you want to learn how many characters in a text, you need to count all
+                    the
+                    characters, including special characters.</p>
+                <h3 class="h3_heading">How Can You Count Characters?</h3>
+                <p class="p_para">To find out the number of characters in the text, you can open your document with Word
+                    or
+                    LibreOffice. Alternatively, you can use an online tool like the Character Counter to count the
+                    number of
+                    characters in a document.</p>
+                <h3 class="h3_heading">Does Character Count Include Spaces?</h3>
+                <p class="p_para">Yes. Character count without spaces is another metric that is completely different
+                    from
+                    the character count.</p>
+                <h3 class="h3_heading">How Can I Check My Character Count Online?</h3>
+                <p class="p_para">With the Character Calculator, you can check character count online easily and for
+                    free.
+                </p>
+                <h3 class="h3_heading">What Is the Character Calculator?</h3>
+                <p class="p_para">Character Counter is an online character count calculator tool, which is simple and
+                    free
+                    to use. It is especially useful for services like Twitter and Reddit.</p>
+                <h3 class="h3_heading">How Do You Use the Character Calculator?</h3>
+                <p class="p_para">Type in or copy and paste your text to the input above. Then, the Character Calculator
+                    will show you the character count, with or without spaces, as well as the word count.</p>
+                <h3 class="h3_heading">How Do I Do a Character Count in Word for Mac?</h3>
+                <p class="p_para">Within the "Review" tab, click to "Word Count" icon, next to "Spelling & Grammar".
+                    You'll
+                    see statistics for both Characters (no spaces) and Characters (with spaces).</p>
+                <h3 class="h3_heading">How Many Characters Are in a Text Message?</h3>
+                <p class="p_para">For a single SMS, the character limit is 160 characters.</p>
+                <h3 class="h3_heading">How Many Characters in a Tweet?</h3>
+                <p class="p_para">The original character length used to be 140 characters for a tweet as Twitter began
+                    its
+                    operations as an SMS based service. In 2023, the answer to the question of how many characters in a
+                    tweet is 280.</p>
             </div>
         </div>
     </div>

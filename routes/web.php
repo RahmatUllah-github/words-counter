@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,12 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('web');
 
 Route::view('/contactus', 'contactus')->name('contactus.index');
-
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

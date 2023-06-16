@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import axios from 'axios';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -16,7 +17,19 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import CounterComponent from './components/CounterComponent.vue';
+import ContactComponent from './components/ContactComponent.vue';
 app.component('counter-component', CounterComponent);
+app.component('contact-component', ContactComponent);
+
+const axiosInstance = axios.create({
+    headers: {
+      common: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        accept: 'application/json',
+      },
+    },
+});
+app.config.globalProperties.$axios = axiosInstance;
 
 /**
  * The following block of code may be used to automatically register your

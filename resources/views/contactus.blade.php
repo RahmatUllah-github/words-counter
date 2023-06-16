@@ -1,52 +1,45 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-    <section class="container py-5 px-3 px-md-5">
-        @if ($errors->any())
-            <div class="alert alert-danger mb-3">
-                <ul class="m-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{!! $error !!}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
 
-        @if (session('success'))
-            <div class="alert alert-success mb-3">
-                <ul class="m-0">
-                    <li>{{ session('success') }}</li>
-                </ul>
-            </div>
-        @endif
+          <div class="section-title">
+            <h3 class="h3_heading pt-3">Contact</h3>
+            <p class="p_para">
+                Welcome to The Words Counter! We value your feedback and inquiries.
+                If you have any questions, suggestions, or collaboration opportunities,
+                please don't hesitate to reach out to us. Our dedicated team is here to assist you.
+                Contact us today and let's explore the exciting possibilities together.
+            </p>
+          </div>
 
-        <form action="{{ route('contactus.save') }}" method="POST">
-            @csrf
-
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="first_name" class="form-label">First Name</label>
-                        <input type="text" class="form-control shadow-none" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name" class="form-label">Last Name</label>
-                        <input type="text" class="form-control shadow-none" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control shadow-none" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
-                    </div>
+          <div class="row flex-md-row flex-column-reverse">
+            <div class="col-lg-5 d-flex align-items-stretch">
+              <div class="info">
+                <div class="address">
+                  <i class="fas fa-location-arrow"></i>
+                  <h4>Location:</h4>
+                  <p>Software Company Lahore, Pakistan</p>
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea name="message" class="form-control shadow-none pb-2" id="message" cols="30" rows="8" placeholder="Type your message here...">{{ old('message') }}</textarea>
-                    </div>
+                 <div class="email">
+                  <i class="fas fa-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>rahmatul368@gmail.com</p>
                 </div>
-
-                <input type="submit" class="btn btn-primary mt-5 mx-auto submit-btn" value="Send">
+                 <div class="phone">
+                  <i class="fas fa-phone"></i>
+                  <h4>Call:</h4>
+                  <p>+92 346 9070799</p>
+                </div>
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="240px" id="gmap_canvas" src="https://maps.google.com/maps?q=Software Company Liberty Market Gulberg III, Lahore, Punjab 54000&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2yu.co">2yu</a><br><style>.mapouter{position:relative;text-align:right;height:100%;width:100%;}</style><a href="https://embedgooglemap.2yu.co/">html embed google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style></div></div>
+              </div>
             </div>
-        </form>
-    </section>
+
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+              <contact-component></contact-component>
+            </div>
+          </div>
+        </div>
+      </section>
 @endsection
