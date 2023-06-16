@@ -5,15 +5,15 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="box_div d-flex flex-wrap text-secondary">
-                            <button class="box text-secondary" @click="undo">
+                            <button class="box text-secondary" @click="undo" :disabled="disableUndo">
                                 <i class="fas fa-undo"></i>
                                 <span>Undo</span>
                             </button>
-                            <button class="box text-secondary" @click="redo">
+                            <button class="box text-secondary" @click="redo" :disabled="disableRedo">
                                 <i class="fas fa-redo"></i>
                                 <span>Redo</span>
                             </button>
-                            <button class="box text-secondary" @click="copy">
+                            <button class="box text-secondary" @click="copy" :disabled="text.length == 0">
                                 <i class="fas fa-copy"></i>
                                 <span>Copy</span>
                             </button>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="box_sub">
-                                <span>Upper Case</span>
+                                <span>{{ ucfirst(currentTextCase) }}</span>
                             </div>
                         </div>
                         <div class="word-count">
@@ -115,7 +115,8 @@
                             <div v-show="specialCharactersCount" class="right_side_box">
                                 <p class="margin_bottom">Special Characters</p>
                                 <div class="circle">
-                                    <span class="digit">{{ specialCharactersCount }} ({{ percentageSpecialCharacters }}%)</span>
+                                    <span class="digit">{{ specialCharactersCount }} ({{ percentageSpecialCharacters
+                                    }}%)</span>
                                 </div>
                             </div>
                             <div v-show="count_a" class="right_side_box">
@@ -301,12 +302,6 @@
                                     <span class="digit">{{ count_2 }} ({{ percentage_2 }}%)</span>
                                 </div>
                             </div>
-                            <div v-show="count_z" class="right_side_box">
-                                <p class="margin_bottom">Z Count</p>
-                                <div class="circle">
-                                    <span class="digit">{{ count_z }} ({{ percentage_z }}%)</span>
-                                </div>
-                            </div>
                             <div v-show="count_3" class="right_side_box">
                                 <p class="margin_bottom">3 Count</p>
                                 <div class="circle">
@@ -329,6 +324,12 @@
                                 <p class="margin_bottom">6 Count</p>
                                 <div class="circle">
                                     <span class="digit">{{ count_6 }} ({{ percentage_6 }}%)</span>
+                                </div>
+                            </div>
+                            <div v-show="count_7" class="right_side_box">
+                                <p class="margin_bottom">7 Count</p>
+                                <div class="circle">
+                                    <span class="digit">{{ count_7 }} ({{ percentage_7 }}%)</span>
                                 </div>
                             </div>
                             <div v-show="count_8" class="right_side_box">
@@ -414,6 +415,7 @@ export default {
         return {
             text: '',
             currentValue: '',
+            currentTextCase: '',
             undoHistory: [],
             redoHistory: [],
             facebookTotal: 250,
@@ -424,13 +426,14 @@ export default {
         }
     },
     watch: {
-        text(oldVal, newVal) {
-            this.currentValue = newVal;
+        text(val) {
+            if (this.currentTextCase == '' || this.currentTextCase == 'uppercase' || this.currentTextCase == 'lowercase') {
+                this.currentValue = val;
+            }
 
             var previous = this.undoHistory[this.undoHistory.length - 1];
-            if (this.currentValue !== previous) {
-                this.undoHistory.push(this.currentValue);
-                this.redoHistory = [];
+            if (this.text !== previous) {
+                this.undoHistory.push(this.text);
             }
             this.updateButtonStates();
         }
@@ -726,20 +729,22 @@ export default {
             this.disableRedo = this.redoHistory.length === 0;
         },
         undo() {
-            console.log(this.undoHistory);
             if (this.undoHistory.length > 1) {
                 this.redoHistory.push(this.undoHistory.pop());
                 this.text = this.undoHistory[this.undoHistory.length - 1];
             } else if (this.undoHistory.length === 1) {
-                this.redoHistory.push(this.undoHistory.pop());
+                const value = this.undoHistory.pop();
+                if (value != '') {
+                    this.redoHistory.push(value);
+                }
                 this.text = '';
             }
             this.updateButtonStates();
         },
         redo() {
             if (this.redoHistory.length > 0) {
-                this.undoHistory.push(this.redoHistory.pop());
-                this.text = this.undoHistory[this.undoHistory.length - 1];
+                this.text = this.redoHistory[this.redoHistory.length - 1];
+                this.redoHistory.pop();
             }
             this.updateButtonStates();
         },
@@ -753,45 +758,46 @@ export default {
             }
         },
         changeCase(caseData) {
-            this.text = this.currentValue;
+            this.currentTextCase = caseData;
+            const data = this.currentValue.toLowerCase();
 
             if (caseData === 'uppercase') {
-                this.text = this.text.toUpperCase();
+                this.text = data.toUpperCase();
             } else if (caseData === 'lowercase') {
-                this.text = this.text.toLowerCase();
+                this.text = data.toLowerCase();
             } else if (caseData === 'titlecase') {
-                this.text = this.text.toLowerCase().replace(/(?:^|\s)\S/g, function (value) {
+                this.text = data.toLowerCase().replace(/(?:^|\s)\S/g, function (value) {
                     return value.toUpperCase();
                 });
             } else if (caseData === 'sentencecase') {
-                var sentences = this.text.split('. ');
+                var sentences = data.split('. ');
                 for (var i = 0; i < sentences.length; i++) {
                     sentences[i] = sentences[i].charAt(0).toUpperCase() + sentences[i].slice(1);
                 }
                 this.text = sentences.join('. ');
             } else if (caseData === 'togglecase') {
-                this.text = this.text.split('. ').map(function (sentence) {
+                this.text = data.split('. ').map(function (sentence) {
                     return sentence.split('').map(function (value) {
                         return value === value.toUpperCase() ? value.toLowerCase() : value.toUpperCase();
                     }).join('');
                 }).join('. ');
             } else if (caseData === 'camelcase') {
-                this.text = this.text.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+                this.text = data.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
                     return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
                 }).replace(/\s+/g, '');
             } else if (caseData === 'pascalcase') {
-                this.text = this.text.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter) {
+                this.text = data.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter) {
                     return letter.toUpperCase();
                 }).replace(/\s+/g, '');
             } else if (caseData === 'snakecase') {
-                this.text = this.text.toLowerCase().replace(/\s+/g, '_');
+                this.text = data.toLowerCase().replace(/\s+/g, '_');
             } else if (caseData === 'kebabcase') {
-                this.text = this.text.toLowerCase().replace(/\s+/g, '-');
+                this.text = data.toLowerCase().replace(/\s+/g, '-');
             }
 
             if (this.currentValue !== this.text) {
-                undoHistory.push(this.text);
-                redoHistory = [];
+                this.undoHistory.push(this.text);
+                this.redoHistory = [];
                 this.updateButtonStates();
             }
         },
@@ -815,6 +821,17 @@ export default {
             this.updateButtonStates();
 
             toast.success('Everything cleared successfully');
+        },
+        ucfirst(string) {
+            if (typeof string !== 'string') {
+                throw new Error('ucfirst() expects a string argument.');
+            }
+
+            if (string.length === 0) {
+                return string;
+            }
+
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     }
 }
