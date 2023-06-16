@@ -12,13 +12,18 @@ class SiteSetting extends Model
 
     protected $fillable = [
         'user_id',
-        'page_title',
+        'home_page_title',
         'meta_keywords',
         'meta_description',
         'og_title',
         'og_description',
+        'page_text',
+        'blogs_page_title',
+        'blogs_page_meta_keywords',
+        'blogs_page_meta_description',
+        'blogs_page_og_title',
+        'blogs_page_og_description',
         'blogs_per_page',
-        'page_text'
     ];
 
     public function user(): BelongsTo

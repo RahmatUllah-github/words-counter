@@ -3,6 +3,8 @@
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SiteSettingsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -26,4 +28,17 @@ Route::post('/contactus', [ContactController::class, 'contact'])->name('contactu
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', function () {
+    return redirect()->route('login');
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    // Routes requiring authentication
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/blogs', [BlogController::class, 'adminIndex'])->name('blogs');
+    Route::get('/contact', [ContactController::class, 'adminContact'])->name('contact');
+    Route::get('/profile', [HomeController::class, 'adminProfile'])->name('profile');
+    Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings');
+
+});

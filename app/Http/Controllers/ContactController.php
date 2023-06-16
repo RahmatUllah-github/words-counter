@@ -38,8 +38,19 @@ class ContactController extends Controller
             Log::error($e->getMessage());
             return response()->json(['message' => 'Something went wrong. Please try again.'], 500);
         }
+    }
 
 
+
+
+
+    /*
+    --------------------------------
+        Admin Methods
+    --------------------------------
+    */
+    public function adminContact()
+    {
 
     }
 }

@@ -12,4 +12,15 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('id', 'DESC')->paginate(10);
         return view('blogs', compact('blogs'));
     }
+
+
+    /*
+    --------------------------------
+        Admin Methods
+    --------------------------------
+    */
+    public function adminIndex()
+    {
+
+    }
 }

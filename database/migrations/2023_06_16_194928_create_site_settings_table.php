@@ -16,13 +16,18 @@ return new class extends Migration
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('page_title');
+            $table->string('home_page_title');
             $table->text('meta_keywords');
             $table->text('meta_description');
             $table->string('og_title');
             $table->string('og_description');
-            $table->integer('blogs_per_page')->default(12);
             $table->text('page_text');
+            $table->string('blogs_page_title');
+            $table->text('blogs_page_meta_keywords');
+            $table->text('blogs_page_meta_description');
+            $table->text('blogs_page_og_title');
+            $table->text('blogs_page_og_description');
+            $table->integer('blogs_per_page')->default(12);
             $table->timestamps();
         });
     }
