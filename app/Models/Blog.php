@@ -23,6 +23,11 @@ class Blog extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongs(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 }

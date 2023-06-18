@@ -13,6 +13,11 @@ class BlogController extends Controller
         return view('blogs', compact('blogs'));
     }
 
+    public function show($slug)
+    {
+        return view('blog-details');
+    }
+
 
     /*
     --------------------------------

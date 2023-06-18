@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::view('/contactus', 'contactus')->name('contactus.index');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
 
 Auth::routes();
