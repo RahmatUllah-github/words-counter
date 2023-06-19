@@ -7,6 +7,8 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import axios from 'axios';
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -18,8 +20,16 @@ const app = createApp({});
 
 import CounterComponent from './components/CounterComponent.vue';
 import ContactComponent from './components/ContactComponent.vue';
+import CategoryComponent from './components/admin/CategoryComponent.vue';
+import BlogComponent from './components/admin/blogs/BlogComponent.vue';
+import AddEditBlogComponent from './components/admin/blogs/AddEditBlogComponent.vue';
+
 app.component('counter-component', CounterComponent);
 app.component('contact-component', ContactComponent);
+app.component('category-component', CategoryComponent);
+app.component('blog-component', BlogComponent);
+app.component('add-edit-blog-component', AddEditBlogComponent);
+app.component('QuillEditor', QuillEditor)
 
 const axiosInstance = axios.create({
     headers: {
@@ -30,6 +40,7 @@ const axiosInstance = axios.create({
     },
 });
 app.config.globalProperties.$axios = axiosInstance;
+
 
 /**
  * The following block of code may be used to automatically register your

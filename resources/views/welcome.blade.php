@@ -7,9 +7,9 @@
         content="Enhance your writing with The Words Counter - a free online tool for counting words, characters, and sentences. Analyze, modify, and optimize your text effortlessly!" />
     <meta property="og:title" content="The Words Counter" />
     <meta property="og:description" content="Free online word, character, sentence, and paragraph counter tool." />
-    <meta property="og:url" content="https://www.thewordscounter.com" />
+    <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
-    <link rel="canonical" href="https://www.thewordscounter.com" />
+    <link rel="canonical" href="{{ config('app.url') }}" />
 
     <title>The Words Counter - Free Online Word, Character, and Sentence Counter and Text Case Converter</title>
 @endsection

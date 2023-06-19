@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+@php
+    use Illuminate\Support\Str;
+@endphp
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog mt-4">
         <div class="container">
@@ -15,34 +18,35 @@
             </div>
         </div>
 
+
+
         <div class="container" data-aos="fade-up">
             <div class="row gy-4 posts-list">
-                <div class="col-xl-4 col-md-6">
-                    <article>
-                        <div class="post-img">
-                            <img src="{{ asset('images/logos/android-chrome-192x192.png') }}" alt="" class="img-fluid">
-                        </div>
-                        <p class="post-category">Politics</p>
-                        <h2 class="title">
-                            <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
-                        </h2>
-                        <div class="d-flex align-items-center">
-                            <p class="p_para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, neque! Eos ut
-                                fugiat ad</p>
-                        </div>
-                    </article>
-                </div>
+                @foreach ($blogs as $blog)
+                    <div class="col-xl-4 col-md-6">
+                        <article>
+                            <div class="post-img">
+                                <img src="{{ $blog->image }}" alt="" class="img-fluid w-100">
+                            </div>
+                            <p class="post-category">{{ $blog->category->name }}</p>
+                            <h1 class="title mb-1">
+                                <a href="{{ route('blog.show', $blog->slug) }}">
+                                    {{ Str::limit(strip_tags($blog->title), 100) }}
+                                </a>
+                            </h1>
+                            <div>
+                                {{ Str::limit(strip_tags($blog->description), 100) }}
+                            </div>
+                        </article>
+                    </div>
+                @endforeach
                 <!-- End post list item -->
 
             </div>
             <!-- End blog posts list -->
 
-            <div class="blog-pagination">
-                <ul class="justify-content-center">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                </ul>
+            <div class="float-end">
+                {!! $blogs->links() !!}
             </div>
             <!-- End blog pagination -->
 

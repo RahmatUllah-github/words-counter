@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <main class="py-4" @auth style="margin-left: 20%; width: 80%" @endauth>
+        <main class="py-4">
             @yield('content')
         </main>
 

@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logos/favicon-32x32.png') }}">
 
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
@@ -12,14 +14,18 @@
 
     <title>{{ config('app.name') }} - Admin Panel</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- Scripts -->
+    @vite(['resources/js/app.js'])
+
     @yield('css')
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="{{ route('home') }}">
+                <a class="sidebar-brand" href="{{ route('admin.home') }}">
                     <span class="align-middle">{{ config('app.name') }}</span>
                 </a>
 
@@ -28,32 +34,38 @@
                         Pages
                     </li>
 
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{ route('home') }}">
+                    <li class="sidebar-item {{ $page == 'Home' ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('admin.home') }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="#">
-                            <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blogs</span>
+                    <li class="sidebar-item {{ $page == 'Category' ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('admin.categories.index') }}">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Categories</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ $page == 'Blog' ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('admin.blogs.index') }}">
+                            <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Blogs</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ $page == 'Contact' ? 'active' : '' }}">
                         <a class="sidebar-link" href="#">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Contact</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ $page == 'Profile' ? 'active' : '' }}">
                         <a class="sidebar-link" href="#">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ $page == 'Setting' ? 'active' : '' }}">
                         <a class="sidebar-link" href="#">
                             <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Site Settings</span>
                         </a>
@@ -70,7 +82,7 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                                 <div class="position-relative">
                                     <i class="align-middle" data-feather="bell"></i>
@@ -213,7 +225,7 @@
                                     <a href="#" class="text-muted">Show all messages</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
                                 data-bs-toggle="dropdown">
@@ -284,10 +296,9 @@
 
         </div>
     </div>
-
     <script src="{{ asset('admin/js/app.js') }}"></script>
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
             var gradient = ctx.createLinearGradient(0, 0, 0, 225);
@@ -511,7 +522,7 @@
                 defaultDate: defaultDate
             });
         });
-    </script>
+    </script> --}}
 
     @yield('script')
 

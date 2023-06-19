@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -25,21 +26,34 @@ Route::get('/', function () {
 Route::view('/contactus', 'contactus')->name('contactus.index');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('category/{id}/blogs', [BlogController::class, 'categoryBlogs'])->name('category.blogs');
 Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
 
 Auth::routes();
 
-Route::get('/register', function () {
-    return redirect()->route('login');
-});
+// Route::get('/register', function () {
+//     return redirect()->route('login');
+// });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     // Routes requiring authentication
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/blogs', [BlogController::class, 'adminIndex'])->name('blogs');
-    Route::get('/contact', [ContactController::class, 'adminContact'])->name('contact');
-    Route::get('/profile', [HomeController::class, 'adminProfile'])->name('profile');
-    Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings');
+
+    Route::get('/categories', [CategoryController::class, 'adminIndex'])->name('categories.index');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::post('/categories/update', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
+
+    Route::get('/blogs', [BlogController::class, 'adminIndex'])->name('blogs.index');
+    Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('/blogs/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('/blogs/update', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
+
+    Route::get('/contact', [ContactController::class, 'adminContact'])->name('contact.index');
+    Route::get('/profile', [HomeController::class, 'adminProfile'])->name('profile.index');
+    Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings.index');
 
 });

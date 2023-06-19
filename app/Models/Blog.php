@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
 {
@@ -12,6 +13,7 @@ class Blog extends Model
 
     protected $fillable = [
         'user_id',
+        'category_id',
         'page_title',
         'slug',
         'title',
@@ -20,6 +22,21 @@ class Blog extends Model
         'meta_keywords',
         'meta_description'
     ];
+
+    // Define the accessor for the image attribute
+    public function getImageAttribute($value)
+    {
+        return '/storage/' . $value;
+    }
+
+    public static function deleteImage($filePath)
+    {
+        $filePath = 'public/' . $filePath;
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+        return true;
+    }
 
     public function user(): BelongsTo
     {

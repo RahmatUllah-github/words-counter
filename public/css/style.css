@@ -986,27 +986,29 @@ media qureie
 	font-size: 14px;
   }
 
-  .blog .sidebar .recent-posts .post-item+.post-item {
-	margin-top: 15px;
+  .blog .sidebar .recent-posts .post-item {
+	margin-top: 15px !important
   }
 
   .blog .sidebar .recent-posts img {
 	width: 80px;
+    height: 50px;
 	float: left;
   }
 
-  .blog .sidebar .recent-posts h4 {
+  .blog .sidebar .recent-posts h5 {
 	font-size: 15px;
 	margin-left: 95px;
 	font-weight: bold;
+    margin-bottom: 0;
   }
 
-  .blog .sidebar .recent-posts h4 a {
+  .blog .sidebar .recent-posts h5 a {
 	color: var(--color-default);
 	transition: 0.3s;
   }
 
-.blog .sidebar .recent-posts h4 a:hover {
+.blog .sidebar .recent-posts h5 a:hover {
 	color: var(--color-primary);
   }
 

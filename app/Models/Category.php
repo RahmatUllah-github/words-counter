@@ -12,7 +12,7 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    protected $timestamps = false;
+    public $timestamps = false;
 
     public function blogs(): HasMany
     {
