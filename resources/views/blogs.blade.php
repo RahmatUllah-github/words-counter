@@ -23,11 +23,12 @@
         <div class="container">
             <div class="row mb-4 d-flex justify-content-center align-items-center">
                 <div class="col-md-8">
-                    <div class="search">
+                    <form action="{{ route('blogs.search') }}" method="POST" class="search">
+                        @csrf
                         <i class="fa fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Have a question? Ask Now">
-                        <button class="btn btn-primary">Search</button>
-                    </div>
+                        <input type="text" class="form-control" name="search" value="{{ $search }}" placeholder="Search Blog">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </div>
             </div>
         </div>

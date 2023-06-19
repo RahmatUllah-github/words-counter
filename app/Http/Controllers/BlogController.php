@@ -16,8 +16,21 @@ class BlogController extends Controller
     public function index()
     {
         $setting = SiteSetting::first();
-        $blogs = Blog::with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
-        return view('blogs', compact('blogs', 'setting'));
+        $search = '';
+        if (session('search') && session('search') != '') {
+            $search = session('search');
+            session()->forget('search');
+            $blogs = Blog::with('category')
+            ->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%'.$search.'%')
+                      ->orWhere('slug', 'like', '%'.$search.'%')
+                      ->orWhere('description', 'like', '%'.$search.'%');
+            })
+            ->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        } else {
+            $blogs = Blog::with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        }
+        return view('blogs', compact('blogs', 'setting', 'search'));
     }
 
     public function show($slug)
@@ -40,6 +53,16 @@ class BlogController extends Controller
         $setting = SiteSetting::first();
         $blogs = Blog::where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
         return view('blogs', compact('blogs', 'setting'));
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        session(['search' => $request->search]);
+        return redirect()->route('blogs.index');
     }
 
 
