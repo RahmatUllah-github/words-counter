@@ -1,5 +1,19 @@
 @extends('layouts.master')
 
+@section('meta')
+    <meta name="keywords"
+        content="{{ $setting->blogs_page_meta_keywords ?? '' }}" />
+    <meta name="description"
+        content="{{ $setting->blogs_page_meta_description ?? '' }}" />
+    <meta property="og:title" content="{{ $setting->blogs_page_title ?? '' }}" />
+    <meta property="og:description" content="{{ $setting->blogs_page_meta_description }}" />
+    <meta property="og:url" content="{{ config('app.url') }}" />
+    <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
+    <link rel="canonical" href="{{ config('app.url') }}" />
+
+    <title>{{ $setting->blogs_page_title ?? '' }}</title>
+@endsection
+
 @section('content')
 @php
     use Illuminate\Support\Str;

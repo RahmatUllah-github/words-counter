@@ -1,7 +1,7 @@
 <template>
     <div class="container py-5">
         <div class="mb-3">
-            <button class="btn btn-primary" @click="showAddCategoryFrom = !showAddCategoryFrom">
+            <button class="btn btn-primary" @click="showAddForm">
                 Add Category
             </button>
         </div>
@@ -100,6 +100,12 @@ export default {
             });
         },
 
+        showAddForm() {
+            this.name = '';
+            this.showAddCategoryFrom = true;
+            this.showEditCategoryFrom = false;
+        },
+
         addCategory() {
             this.disableAddButton = true;
 
@@ -110,6 +116,7 @@ export default {
                 this.$axios
                     .post('/admin/categories', formData)
                     .then(response => {
+                        this.name = '';
                         this.loadDataTable();
                         this.disableAddButton = false;
                         toast.success(response.data.message);
@@ -128,6 +135,7 @@ export default {
             this.id = id;
             this.name = name;
             this.showEditCategoryFrom = true;
+            this.showAddCategoryFrom = false;
         },
 
         updateCategory() {
@@ -141,6 +149,7 @@ export default {
                 this.$axios
                     .post('/admin/categories/update', formData)
                     .then(response => {
+                        this.name = '';
                         this.loadDataTable();
                         this.disableEditButton = false;
                         toast.success(response.data.message);

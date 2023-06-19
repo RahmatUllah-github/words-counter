@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -14,15 +15,16 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::with('category')->orderBy('id', 'DESC')->paginate(12);
-        return view('blogs', compact('blogs'));
+        $setting = SiteSetting::first();
+        $blogs = Blog::with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        return view('blogs', compact('blogs', 'setting'));
     }
 
     public function show($slug)
     {
         $blog = Blog::where('slug', $slug)->with('category', 'user:id,name,image')->first();
-        $recommends = Blog::where('category_id', $blog->category->id)->with('user:id,name,image', 'category')->limit(5)->get();
-        $recents = Blog::with('user:id,name,image', 'category')->where('id', '!=', $blog->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $recommends = Blog::where('id', '!=', $blog->id)->where('category_id', $blog->category->id)->with('user:id,name,image', 'category')->limit(5)->get();
+        $recents = Blog::where('id', '!=', $blog->id)->with('user:id,name,image', 'category')->where('id', '!=', $blog->id)->orderBy('id', 'DESC')->limit(5)->get();
         $categories = Category::withCount('blogs')->limit(10)->get();
 
         return view('blog-details', [
@@ -35,8 +37,9 @@ class BlogController extends Controller
 
     public function categoryBlogs($id)
     {
-        $blogs = Blog::where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate(12);
-        return view('blogs', compact('blogs'));
+        $setting = SiteSetting::first();
+        $blogs = Blog::where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        return view('blogs', compact('blogs', 'setting'));
     }
 
 

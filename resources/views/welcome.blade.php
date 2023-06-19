@@ -2,18 +2,18 @@
 
 @section('meta')
     <meta name="keywords"
-        content="words counter, character counter, sentence counter, text case converter, online tool, free tool" />
+        content="{{ $setting->meta_keywords ?? '' }}" />
     <meta name="description"
-        content="Enhance your writing with The Words Counter - a free online tool for counting words, characters, and sentences. Analyze, modify, and optimize your text effortlessly!" />
-    <meta property="og:title" content="The Words Counter" />
-    <meta property="og:description" content="Free online word, character, sentence, and paragraph counter tool." />
+        content="{{ $setting->meta_description ?? '' }}" />
+    <meta property="og:title" content="{{ $setting->home_page_title ?? '' }}" />
+    <meta property="og:description" content="{{ $setting->meta_description }}" />
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
     <link rel="canonical" href="{{ config('app.url') }}" />
 
-    <title>The Words Counter - Free Online Word, Character, and Sentence Counter and Text Case Converter</title>
+    <title>{{ $setting->home_page_title ?? '' }}</title>
 @endsection
 
 @section('content')
-    <counter-component></counter-component>
+    <counter-component page-text="{{ $setting->page_text ?? '' }}"></counter-component>
 @endsection

@@ -23,6 +23,7 @@ import ContactComponent from './components/ContactComponent.vue';
 import CategoryComponent from './components/admin/CategoryComponent.vue';
 import BlogComponent from './components/admin/blogs/BlogComponent.vue';
 import ProfileComponent from './components/admin/ProfileComponent.vue';
+import SiteSettingComponent from './components/admin/SiteSettingComponent.vue';
 import AddEditBlogComponent from './components/admin/blogs/AddEditBlogComponent.vue';
 
 app.component('counter-component', CounterComponent);
@@ -30,6 +31,7 @@ app.component('contact-component', ContactComponent);
 app.component('category-component', CategoryComponent);
 app.component('blog-component', BlogComponent);
 app.component('profile-component', ProfileComponent);
+app.component('site-setting-component', SiteSettingComponent);
 app.component('add-edit-blog-component', AddEditBlogComponent);
 app.component('QuillEditor', QuillEditor)
 

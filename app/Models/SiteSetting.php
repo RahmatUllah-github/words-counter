@@ -15,14 +15,10 @@ class SiteSetting extends Model
         'home_page_title',
         'meta_keywords',
         'meta_description',
-        'og_title',
-        'og_description',
         'page_text',
         'blogs_page_title',
         'blogs_page_meta_keywords',
         'blogs_page_meta_description',
-        'blogs_page_og_title',
-        'blogs_page_og_description',
         'blogs_per_page',
     ];
 

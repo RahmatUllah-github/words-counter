@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiteSettingsController;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +20,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('web');
-
+Route::get('/', [GeneralController::class, 'index'])->name('web');
 Route::view('/contactus', 'contactus')->name('contactus.index');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
@@ -47,7 +45,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     Route::get('/blogs', [BlogController::class, 'adminIndex'])->name('blogs.index');
     Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.save');
     Route::get('/blogs/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::post('/blogs/update', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
@@ -56,5 +54,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('/profile', [HomeController::class, 'adminProfile'])->name('profile.index');
     Route::post('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
     Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings.index');
+    Route::post('/site-settings', [SiteSettingsController::class, 'saveSetting'])->name('site-settings.save');
 
 });

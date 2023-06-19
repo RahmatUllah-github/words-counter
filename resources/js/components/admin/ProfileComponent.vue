@@ -30,7 +30,7 @@
                 <input type="password" id="confirm_password" class="form-control" v-model="confirm_password" placeholder="Confirm Password">
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" :disabled="disableSubmit">Save <span v-show="disableSubmit">...</span></button>
         </form>
     </div>
 </template>
