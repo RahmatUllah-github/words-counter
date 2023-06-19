@@ -9,7 +9,7 @@
 
             <div class="form-group mb-3 w-75">
                 <label for="image" class="form-label">Select Blog Image</label>
-                <input type="file" @change="imageSelected" class="form-control" accept=".jpg, .png, .jpeg, .gif">
+                <input type="file" @change="imageSelected" class="form-control" accept=".jpg, .png, .jpeg, .gif" required>
             </div>
 
             <div class="form-group mb-3 w-75">
@@ -126,7 +126,6 @@ export default {
                     });
 
             } else{
-                console.log(this.category, this.image, this.title, this.description);
                 toast.error('Please fill all the fields correctly.');
                 this.disableSubmit = false;
             }

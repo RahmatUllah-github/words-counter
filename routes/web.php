@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     Route::get('/contact', [ContactController::class, 'adminContact'])->name('contact.index');
     Route::get('/profile', [HomeController::class, 'adminProfile'])->name('profile.index');
+    Route::post('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
     Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings.index');
 
 });

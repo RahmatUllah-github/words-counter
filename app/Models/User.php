@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -43,6 +44,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Define the accessor for the image attribute
+    public function getImageAttribute($value)
+    {
+        if ($value != null) {
+            return '/storage/' . $value;
+        }
+        return null;
+    }
+
+    public static function deleteImage($filePath)
+    {
+        $filePath = 'public/' . $filePath;
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+        return true;
+    }
 
     public function blogs(): HasMany
     {

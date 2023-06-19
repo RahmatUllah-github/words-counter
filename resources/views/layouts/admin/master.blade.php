@@ -60,7 +60,7 @@
                     </li>
 
                     <li class="sidebar-item {{ $page == 'Profile' ? 'active' : '' }}">
-                        <a class="sidebar-link" href="#">
+                        <a class="sidebar-link" href="{{ route('admin.profile.index') }}">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                         </a>
                     </li>
@@ -234,7 +234,7 @@
 
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
-                                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="{{ auth()->user()->name }}" />
+                                <img src="{{ auth()->user()->image ?? '/images/avatar.jpeg' }}" class="avatar img-fluid rounded me-1" alt="{{ auth()->user()->name }}" />
                                 <span class="text-dark">{{ auth()->user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
