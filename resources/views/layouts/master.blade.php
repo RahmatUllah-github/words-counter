@@ -54,12 +54,17 @@
             </div>
             <div class="overlay"></div>
             <div class="nav_width">
-                <h1 class="d-md-none" style="font-size: 3rem;"><a style="font-size: 3rem;"
-                        href="{{ route('web') }}">Br<span>a</span>nd</a></h1>
+                <h1 class="d-md-none" style="font-size: 3rem;">
+                    <a style="font-size: 3rem;" href="{{ route('web') }}">
+                        <img src="{{ asset('images/logos/thewordscounter-logo.png') }}" height="60" class="img-responsive" alt="The Words Counter" />
+                    </a></h1>
                 <div class="container">
                     <nav>
-                        <h1 style="font-size: 3rem;" class="brand d-md-block d-none"><a style="font-size: 3rem;"
-                                href="{{ route('web') }}">Br<span>a</span>nd</a></h1>
+                        <h1 style="font-size: 3rem;" class="brand d-md-block d-none">
+                            <a style="font-size: 3rem;" href="{{ route('web') }}">
+                                <img src="{{ asset('images/logos/thewordscounter-logo.png') }}" height="60" class="img-responsive" alt="The Words Counter" />
+                            </a>
+                        </h1>
                         <ul>
                             <li><a href="{{ route('web') }}">Home</a></li>
                             <li><a href="{{ route('blogs.index') }}">Blogs</a></li>
