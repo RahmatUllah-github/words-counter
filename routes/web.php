@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiteSettingsController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -33,6 +34,20 @@ Auth::routes();
 // Route::get('/register', function () {
 //     return redirect()->route('login');
 // });
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate:fresh');
+    Artisan::call('optimize:clear');
+
+    return 'done';
+});
+
+Route::get('/clear', function () {
+    Artisan::call('optimize:clear');
+    Artisan::call('optimize');
+
+    return 'done';
+});
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     // Routes requiring authentication
