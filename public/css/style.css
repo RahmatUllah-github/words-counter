@@ -1059,3 +1059,7 @@ media qureie
   .search_btn {
     width: 50px !important;
   }
+
+  .share-modal {
+    padding: 0.5rem 1rem !important;
+  }

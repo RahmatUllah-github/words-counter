@@ -19,7 +19,7 @@
     <section id="blog" class="blog mt-5">
         <div class="container" data-aos="fade-up">
 
-            <div class="row g-5">
+            <div class="row g-5 mb-4">
 
                 <div class="col-lg-8">
 
@@ -97,6 +97,22 @@
                     </div><!-- End Blog Sidebar -->
 
                 </div>
+            </div>
+
+            <h4>Share Blog</h4>
+            <div class="d-flex mt-3">
+                <a href="whatsapp://send?text={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
+                    <i class="fab fa-whatsapp-square fa-lg" style="color: #25d366; font-size: 40px;"></i>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
+                    <i class="fab fa-facebook-square fa-lg" style="color: #3b5998; font-size: 40px;"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
+                    <i class="fab fa-twitter-square fa-lg" style="color: #00acee; font-size: 40px;"></i>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
+                    <i class="fab fa-linkedin fa-lg" style="color: #0072b1; font-size: 40px;"></i>
+                </a>
             </div>
 
         </div>
