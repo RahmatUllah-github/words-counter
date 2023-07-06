@@ -29,7 +29,10 @@
                             <img src="{{ $blog->image }}" alt="" class="img-fluid">
                         </div>
 
-                        <p>{{ $blog->category->name }}</p>
+                        <p>
+                            {{ $blog->category->name }}
+                            <time class="time">({{ $blog->created_at->diffForHumans() }})</time>
+                        </p>
 
                         <h2 class="title mt-3">{{ $blog->title }}</h2>
 
@@ -67,7 +70,7 @@
                                         <img src="{{ $recommend->image }}" alt="">
                                         <div>
                                             <h5><a href="{{ route('blog.show', $recommend->slug) }}">{{ Str::limit($recommend->title, 35) }}</a></h5>
-                                            <time datetime="2020-01-01">{{ $recommend->created_at->diffForHumans() }}</time>
+                                            <time class="time">{{ $recommend->created_at->diffForHumans() }}</time>
                                         </div>
                                     </div><!-- End recent post item-->
                                 @endforeach
@@ -85,7 +88,7 @@
                                             <img src="{{ $recent->image }}" alt="">
                                             <div>
                                                 <h5><a href="{{ route('blog.show', $recent->slug) }}">{{ Str::limit($recent->title, 35) }}</a></h5>
-                                                <time datetime="2020-01-01">{{ $recent->created_at->diffForHumans() }}</time>
+                                                <time class="time">{{ $recent->created_at->diffForHumans() }}</time>
                                             </div>
                                         </div><!-- End recent post item-->
                                     @endforeach

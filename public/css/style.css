@@ -1017,7 +1017,10 @@ media qureie
 	margin-left: 95px;
 	font-style: italic;
 	font-size: 14px;
-	color: rgba(34, 34, 34, 0.4);
+}
+
+.time {
+      color: rgba(34, 34, 34, 0.4);
   }
 
   .blog .sidebar .tags {
