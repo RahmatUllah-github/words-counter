@@ -38,7 +38,7 @@ class BlogController extends Controller
         $blog = Blog::where('slug', $slug)->with('category', 'user:id,name,image')->first();
         $recommends = Blog::where('id', '!=', $blog->id)->where('category_id', $blog->category->id)->with('user:id,name,image', 'category')->limit(5)->get();
         $recents = Blog::where('id', '!=', $blog->id)->with('user:id,name,image', 'category')->where('id', '!=', $blog->id)->orderBy('id', 'DESC')->limit(5)->get();
-        $categories = Category::withCount('blogs')->limit(10)->get();
+        $categories = Category::whereHas('blogs')->withCount('blogs')->limit(10)->get();
 
         return view('blog-details', [
             'blog' => $blog,
@@ -51,8 +51,9 @@ class BlogController extends Controller
     public function categoryBlogs($id)
     {
         $setting = SiteSetting::first();
+        $search = '';
         $blogs = Blog::where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
-        return view('blogs', compact('blogs', 'setting'));
+        return view('blogs', compact('blogs', 'setting', 'search'));
     }
 
     public function search(Request $request)

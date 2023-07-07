@@ -26,7 +26,7 @@ Route::view('/contactus', 'contactus')->name('contactus.index');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::post('/blog/search', [BlogController::class, 'search'])->name('blogs.search');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('category/{id}/blogs', [BlogController::class, 'categoryBlogs'])->name('category.blogs');
+Route::get('/category/{id}/blogs', [BlogController::class, 'categoryBlogs'])->name('category.blogs');
 Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
 
 Auth::routes();
