@@ -44,6 +44,9 @@
         gtag('config', 'G-XTF11F8N14');
         // Stream Id = 5290357554
     </script> --}}
+
+    <!-- Google tag (gtag.js) -->
+
 </head>
 
 <body>
