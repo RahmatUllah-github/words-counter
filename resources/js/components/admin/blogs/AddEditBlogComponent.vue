@@ -9,7 +9,7 @@
 
             <div class="form-group mb-3 w-75">
                 <label for="image" class="form-label">Select Blog Image</label>
-                <input type="file" @change="imageSelected" class="form-control" accept=".jpg, .png, .jpeg, .gif" required>
+                <input type="file" @change="imageSelected" class="form-control" accept=".jpg, .png, .jpeg, .gif">
             </div>
 
             <div class="form-group mb-3 w-75">
