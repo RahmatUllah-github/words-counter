@@ -30,7 +30,7 @@
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 
     @yield('css')
 
@@ -51,7 +51,7 @@
 
 <body>
     <div id="app">
-        <div style="background-color: #47b2e4; line-height: 0; display: flex;">
+        <div class="nav-div">
             <div class="menu-toggle" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
