@@ -29,7 +29,7 @@ class ContactController extends Controller
         }
 
         try {
-            Mail::to(config('mail.from.address'))->send(new ContactUsMail($request->all()));
+            Mail::to('rahmatul0799@gmail.com')->send(new ContactUsMail($request->all()));
             ContactUs::create($request->all());
 
             return response()->json(['message' => 'Message sent successfully..']);
