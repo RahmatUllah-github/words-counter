@@ -1,5 +1,17 @@
 @extends('layouts.master')
 
+@section('meta')
+    {{-- <meta name="keywords" content="{{ $setting->blogs_page_meta_keywords ?? '' }}" />
+    <meta name="description" content="{{ $setting->blogs_page_meta_description ?? '' }}" /> --}}
+    <meta property="og:title" content="The Words Counter - Contact Us" />
+    {{-- <meta property="og:description" content="" /> --}}
+    <meta property="og:url" content="{{ config('app.url') . 'contactus' }}" />
+    <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
+    <link rel="canonical" href="{{ config('app.url') . 'contactus' }}" />
+
+    <title>The Words Counter - Contact Us</title>
+@endsection
+
 @section('content')
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
