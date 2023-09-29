@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('meta')
-    {{-- <meta name="keywords" content="{{ $setting->blogs_page_meta_keywords ?? '' }}" />
-    <meta name="description" content="{{ $setting->blogs_page_meta_description ?? '' }}" /> --}}
+    {{-- <meta name="keywords" content="{{ $setting->blogs_page_meta_keywords ?? '' }}" /> --}}
+    <meta name="description" content="Got questions or need help with The Words Counter? Contact us now! We're here to assist you with our handy online text analysis tools" />
     <meta property="og:title" content="The Words Counter - Contact Us" />
-    {{-- <meta property="og:description" content="" /> --}}
+    <meta property="og:description" content="Got questions or need help with The Words Counter? Contact us now! We're here to assist you with our handy online text analysis tools" />
     <meta property="og:url" content="{{ config('app.url') . 'contactus' }}" />
     <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
     <link rel="canonical" href="{{ config('app.url') . 'contactus' }}" />
