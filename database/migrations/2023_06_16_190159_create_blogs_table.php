@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('slug');
             $table->string('page_title');
             $table->text('title');
-            $table->text('description');
+            $table->longText('description');
             $table->string('image');
             $table->text('meta_keywords');
             $table->text('meta_description');
