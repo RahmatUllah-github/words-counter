@@ -20,6 +20,7 @@ const app = createApp({});
 
 import CounterComponent from './components/CounterComponent.vue';
 import ContactComponent from './components/ContactComponent.vue';
+import ShareComponent from './components/ShareComponent.vue';
 import CategoryComponent from './components/admin/CategoryComponent.vue';
 import BlogComponent from './components/admin/blogs/BlogComponent.vue';
 import ProfileComponent from './components/admin/ProfileComponent.vue';
@@ -28,6 +29,7 @@ import AddEditBlogComponent from './components/admin/blogs/AddEditBlogComponent.
 
 app.component('counter-component', CounterComponent);
 app.component('contact-component', ContactComponent);
+app.component('share-component', ShareComponent);
 app.component('category-component', CategoryComponent);
 app.component('blog-component', BlogComponent);
 app.component('profile-component', ProfileComponent);

@@ -103,20 +103,7 @@
             </div>
 
             <h4>Share Blog</h4>
-            <div class="d-flex mt-3">
-                <a href="whatsapp://send?text={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
-                    <i class="fab fa-whatsapp-square fa-lg" style="color: #25d366; font-size: 40px;"></i>
-                </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
-                    <i class="fab fa-facebook-square fa-lg" style="color: #3b5998; font-size: 40px;"></i>
-                </a>
-                <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
-                    <i class="fab fa-twitter-square fa-lg" style="color: #00acee; font-size: 40px;"></i>
-                </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}" class="mx-1" target="_blank">
-                    <i class="fab fa-linkedin fa-lg" style="color: #0072b1; font-size: 40px;"></i>
-                </a>
-            </div>
+            <share-component div-class="mt-3" blog-url="{{ Request::url() }}"></share-component>
 
         </div>
     </section><!-- End Blog Details Section -->

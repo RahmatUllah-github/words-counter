@@ -44,7 +44,7 @@
                                 <p class="post-category">{{ $blog->category->name }}</p>
                                 <div class="d-flex">
                                     <a type="button" href="javascript:void(0);" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                        data-bs-target="#exampleModal-{{ $blog->id }}">
                                         <i class="fas fa-share" style="color: #c9c9c9;"></i>
                                     </a>
                                 </div>
@@ -61,7 +61,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="exampleModal-{{ $blog->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -71,24 +71,8 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="d-flex justify-content-center">
-                                        <a href="whatsapp://send?text={{ urlencode(config('app.url').'blog/'.$blog->slug) }}" class="mx-1" target="_blank">
-                                            <i class="fab fa-whatsapp-square fa-lg" style="color: #25d366; font-size: 40px;"></i>
-                                        </a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(config('app.url').'blog/'.$blog->slug) }}" class="mx-1" target="_blank">
-                                            <i class="fab fa-facebook-square fa-lg" style="color: #3b5998; font-size: 40px;"></i>
-                                        </a>
-                                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(config('app.url').'blog/'.$blog->slug) }}" class="mx-1" target="_blank">
-                                            <i class="fab fa-twitter-square fa-lg" style="color: #00acee; font-size: 40px;"></i>
-                                        </a>
-                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(config('app.url').'blog/'.$blog->slug) }}" class="mx-1" target="_blank">
-                                            <i class="fab fa-linkedin fa-lg" style="color: #0072b1; font-size: 40px;"></i>
-                                        </a>
-                                    </div>
+                                    <share-component div-class="justify-content-center" blog-url="{{ config('app.url').'blog/'.$blog->slug }}"></share-component>
                                 </div>
-                                {{-- <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div> --}}
                             </div>
                         </div>
                     </div>

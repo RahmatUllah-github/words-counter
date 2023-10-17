@@ -757,7 +757,7 @@ export default {
             if (navigator.clipboard && this.text) {
                 navigator.clipboard.writeText(this.text)
                     .then(function () {
-                        toast.success('Text copied successfully');
+                        toast.success('Text copied to clipboard');
                     })
                     .catch(function (error) {
                         toast.error('Failed to copy text');
