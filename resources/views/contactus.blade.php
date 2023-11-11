@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <section id="contact" class="contact">
+    <section id="contact" class="contact text-secondary">
         <div class="container" data-aos="fade-up">
 
           <div class="section-title">
@@ -32,25 +32,26 @@
                 <div class="address">
                   <i class="fas fa-location-arrow"></i>
                   <h4>Location:</h4>
-                  <p>Software Company Lahore, Pakistan</p>
+                  <p>
+                    <a target="_blank" href="https://www.google.com/maps/place/Lahore,+Pakistan" class="text-secondary">Lahore, Pakistan</a>
+                  </p>
                 </div>
                  <div class="email">
                   <i class="fas fa-envelope"></i>
                   <h4>Email:</h4>
-                  <p>rahmatul368@gmail.com</p>
+                  <p>
+                    <a href="mailto:rahmatul368@gmail.com" class="text-secondary">rahmatul368@gmail.com</a>
+                  </p>
                 </div>
                  <div class="phone">
                   <i class="fas fa-phone"></i>
                   <h4>Call:</h4>
-                  <p>+92 346 9070799</p>
+                  <p>
+                    <a href="tel:+923469070799" class="text-secondary">+92 346 9070799</a>
+                  </p>
                 </div>
-                <div class="mapouter">
-                    <div class="gmap_canvas">
-                        <iframe width="100%" height="240px" id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=Software Company Liberty Market Gulberg III, Lahore, Punjab 54000&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                        </iframe>
-                    </div>
-                </div>
+
+                <div style="width: 100%"><iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q=Canal%20Colony,%20residential,%20Lahore,%20Pakistan+(Rahmat%20Ullah)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/sport-gps/">hiking gps</a></iframe></div>
               </div>
             </div>
 

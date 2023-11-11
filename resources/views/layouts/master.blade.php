@@ -7,14 +7,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="msapplication-TileColor" content="#b6b4ed" />
-    <meta name="msapplication-TileImage" content="{{ asset('images/logos/thewordscounter-logo.png') }}" />
+    <meta name="msapplication-TileColor" content="#3586FF" />
+    <meta name="msapplication-TileImage" content="{{ asset('images/logos/thewordscounter-logo-small.png') }}" />
 
     @yield('meta')
 
     <meta name="robots" content="index, follow" />
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logos/thewordscounter-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logos/thewordscounter-logo-small.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">

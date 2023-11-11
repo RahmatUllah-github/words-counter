@@ -20,7 +20,7 @@
                 <textarea class="form-control" v-model="message" id="message" rows="10" required></textarea>
             </div>
             <div class="text-center">
-                <button type="submit" :disabled="disableSubmit">Send Message <i v-show="disableSubmit" class="fas fa-spinner fa-pulse ms-2"></i></button>
+                <button type="submit" class="btn btn-standard" :disabled="disableSubmit">Send Message <i v-show="disableSubmit" class="fas fa-spinner fa-pulse ms-2"></i></button>
             </div>
         </form>
     </div>

@@ -25,7 +25,11 @@ nav a {
 }
 
 nav a:hover {
-    color: #fff !important
+    color: #E0C87E !important
+}
+
+.fa.fa-search {
+    color: #6C757F !important;
 }
 
 a.dropdown-item {
@@ -67,7 +71,7 @@ nav{
 }
 
 .brand span{
-	color: crimson;
+	color: #E0C87E;
 }
 
 nav ul{
@@ -113,7 +117,7 @@ nav ul li a::after{
 	position: absolute;
 	width: 100%;
 	height: 2px;
-	background-color: crimson;
+	background-color: #E0C87E;
 	left: 0;
 	transform: scaleX(0);
 	transition: all .5s;
@@ -227,7 +231,7 @@ nav ul li a:hover::after{
     font-weight: 500;
 }
 .count-top-bar li span {
-    color: #47b2e4;
+    color: #3586ff;
     font-size: 25px;
     font-weight: 700;
 	font-family: 'Playfair', serif;
@@ -363,14 +367,22 @@ font-weight: 700;
 	display: inline-block;
 	transition: 0.5s;
 	text-decoration: none;
-	opacity: 0.75;
+	opacity: 1;
 	font-weight: 300;
   }
 
 .menu__link:hover {
 	opacity: 1;
-    color: #fff !important;
+    color: #e0c87e !important;
   }
+
+.page-item.active .page-link {
+    color: #fff !important;
+}
+
+.page-item .page-link:hover {
+    color: #C79F5A !important;
+}
 
 .footer p {
 	color: #fff;
@@ -520,17 +532,21 @@ input.form-control.rounded {
 
    }
 
-.search button{
+.search button {
 	position: absolute;
 	top: 5px;
 	right: 5px;
 	height: 50px;
 	width: 110px;
-	background: #47b2e4;
+	background: #3586ff;
 	font-family: 'Playfair', serif;
     font-weight: 500;
+    border: none !important;
+}
 
-   }
+.search button:hover {
+    background-color: #C79F5A !important;
+}
   /*--------------------------------------------------------------
 # Blog Posts List
 --------------------------------------------------------------*/
@@ -596,8 +612,8 @@ input.form-control.rounded {
 # Contact
 --------------------------------------------------------------*/
 .contact .info {
-	border-top: 3px solid #47b2e4;
-	border-bottom: 3px solid #47b2e4;
+	border-top: 3px solid #3586ff;
+	border-bottom: 3px solid #3586ff;
 	padding: 30px;
 	background: #fff;
 	width: 100%;
@@ -606,7 +622,7 @@ input.form-control.rounded {
 
 .contact .info i {
 	font-size: 20px;
-	color: #47b2e4;
+	color: #3586ff;
 	float: left;
 	width: 44px;
 	height: 44px;
@@ -659,21 +675,21 @@ input.form-control.rounded {
   }
 
 .contact .info .social-links a:hover {
-	background: #47b2e4;
+	background: #3586ff;
 	color: #fff;
   }
 
   .contact .info .email:hover i,
   .contact .info .address:hover i,
   .contact .info .phone:hover i {
-	background: #47b2e4;
+	background: #3586ff;
 	color: #fff;
   }
 
   .contact .php-email-form {
 	width: 100%;
-	border-top: 3px solid #47b2e4;
-	border-bottom: 3px solid #47b2e4;
+	border-top: 3px solid #3586ff;
+	border-bottom: 3px solid #3586ff;
 	padding: 30px;
 	background: #fff;
 	box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
@@ -752,7 +768,7 @@ input.form-control.rounded {
 
   .contact .php-email-form input:focus,
   .contact .php-email-form textarea:focus {
-	border-color: #47b2e4;
+	border-color: #3586ff;
   }
 
   .contact .php-email-form input {
@@ -763,17 +779,17 @@ input.form-control.rounded {
 	padding: 10px 12px;
   }
 
-  .contact .php-email-form button[type=submit] {
-	background: #47b2e4;
+  .btn-standard {
+	background: #3586ff;
 	border: 0;
 	padding: 12px 34px;
-	color: #fff;
+	color: #fff !important;
 	transition: 0.4s;
-	border-radius: 50px;
+	border-radius: 5px;
   }
 
-  .contact .php-email-form button[type=submit]:hover {
-	background: #209dd8;
+  .btn-standard:hover {
+	background: #C79F5A !important;
   }
 
   @keyframes animate-loading {

@@ -5,6 +5,8 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="box_div d-flex flex-wrap text-secondary">
+
+                            <!-- counter buttons -->
                             <button class="box text-secondary" @click="undo" :disabled="disableUndo">
                                 <i class="fas fa-undo"></i>
                                 <span>Undo</span>
@@ -57,6 +59,8 @@
                                 <span>{{ ucfirst(currentTextCase) }}</span>
                             </div>
                         </div>
+
+                        <!-- show counts -->
                         <div class="word-count">
                             <ul class="count-top-bar">
                                 <li>
@@ -75,10 +79,15 @@
                                     <p>Paragraphs</p><span class="pages">{{ paragraphsCount }}</span>
                                 </li>
                             </ul>
-                            <label><span style="position:absolute;z-index:-10;">Type or paste your text</span>
+
+                            <!-- textarea -->
+                            <label>
+                                <span style="position:absolute;z-index:-10;">Type or paste your text</span>
                                 <textarea v-model="text" @keydown="handleKeyDown" class="perfecttense" name="content"
                                     placeholder="Type or paste your text" spellcheck="true"></textarea>
                             </label>
+
+                            <!-- social counts -->
                             <div class="count-bot-bar text-secondary">
                                 <div class="col-bot-bar">
                                     <div class="bot-bar-title">
@@ -108,6 +117,8 @@
                         </div>
                     </div>
                     <div class="col-lg-3">
+
+                        <!-- alphabets counts -->
                         <div class="ms-lg-4 ms-xl-3 righ_side_border">
                             <div>
                                 <p class="box_heading">Characters Details</p>
@@ -278,7 +289,7 @@
                             </div>
                         </div>
 
-
+                        <!-- numeric digits counts -->
                         <div class="ms-lg-4 ms-xl-3 righ_side_border">
                             <div>
                                 <p class="box_heading">Numeric Character Details</p>
@@ -346,6 +357,11 @@
                             </div>
                         </div>
 
+                        <!-- <div class="ms-lg-4 ms-xl-3 righ_side_border">
+                            <div>
+                                <p class="box_heading">Keywords Density</p>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
