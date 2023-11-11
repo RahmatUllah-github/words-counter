@@ -376,12 +376,12 @@ font-weight: 700;
     color: #e0c87e !important;
   }
 
-.page-item.active .page-link {
-    color: #fff !important;
-}
-
 .page-item .page-link:hover {
     color: #C79F5A !important;
+}
+
+.page-item.active .page-link {
+    color: #fff !important;
 }
 
 .footer p {
@@ -841,7 +841,7 @@ media qureie
 		margin-right: 15px;
 		font-size: 1.8rem;
 	}
-	nav{
+	nav.top-nav {
 		padding-top: 0;
 		display: none;
 		flex-direction: column;
@@ -850,15 +850,15 @@ media qureie
 		text-align: center;
 	}
 
-	nav ul{
+	nav.top-nav ul{
 		flex-direction: column;
 	}
 
-	nav ul li{
+	nav.top-nav ul li{
 		margin-top: 5rem;
 	}
 
-	nav ul li a{
+	nav.top-nav ul li a{
 		margin: 0;
 		font-size: 2.5rem;
 	}

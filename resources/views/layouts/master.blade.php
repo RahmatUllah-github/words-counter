@@ -62,7 +62,7 @@
                         <img src="{{ asset('images/logos/thewordscounter-logo.png') }}" height="60" class="img-responsive" alt="The Words Counter" />
                     </a></h1>
                 <div class="container">
-                    <nav>
+                    <nav class="top-nav">
                         <h1 style="font-size: 3rem;" class="brand d-md-block d-none">
                             <a style="font-size: 3rem;" href="{{ route('web') }}">
                                 <img src="{{ asset('images/logos/thewordscounter-logo.png') }}" height="60" class="img-responsive" alt="The Words Counter" />
