@@ -44,7 +44,7 @@
 
             <div class="form-group mb-4 w-75">
                 <label for="description" class="form-label">Blog Description</label>
-                <QuillEditor theme="snow" v-model:content="description" contentType="html" id="description" class="form-control" required/>
+                <QuillEditor v-model:content="description" toolbar="full" contentType="html" id="description" class="form-control" required/>
             </div>
 
             <button type="submit" class="btn btn-primary" :disabled="disableSubmit">Publish <span v-show="disableSubmit">...</span></button>

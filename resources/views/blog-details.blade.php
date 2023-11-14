@@ -26,7 +26,7 @@
                     <article class="blog-details">
 
                         <div class="post-img">
-                            <img src="{{ $blog->image }}" alt="" class="img-fluid">
+                            <img src="{{ $blog->image }}" alt="" class="img-fluid rounded">
                         </div>
 
                         <p>

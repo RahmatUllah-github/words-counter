@@ -37,6 +37,18 @@ app.component('site-setting-component', SiteSettingComponent);
 app.component('add-edit-blog-component', AddEditBlogComponent);
 app.component('QuillEditor', QuillEditor)
 
+// Define your options
+const globalOptions = {
+    theme: 'snow',
+    modules: {
+        autoformat: true,
+        syntax: true,
+    },
+  };
+
+// Set default globalOptions prop
+QuillEditor.props.globalOptions.default = () => globalOptions;
+
 const axiosInstance = axios.create({
     headers: {
       common: {

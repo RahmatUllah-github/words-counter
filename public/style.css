@@ -532,6 +532,13 @@ input.form-control.rounded {
 
    }
 
+pre.ql-syntax {
+    background-color: #23241F !important;
+    color: #F8F8F2 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+}
+
 .search button {
 	position: absolute;
 	top: 5px;
