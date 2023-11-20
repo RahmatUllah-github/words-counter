@@ -173,6 +173,7 @@ nav ul li a:hover::after{
 	border-radius: 0;
 	justify-content: center;
 	cursor: pointer;
+    border-radius: 5px;
 }
 
 .box_sub {
@@ -207,11 +208,13 @@ nav ul li a:hover::after{
     justify-content: start;
     background: #dee2e6;
     padding: 5px;
+    border-radius: 5px 5px 0 0;
 }
 .word-count {
     background: #fdfdfd;
     border: 1px solid #eaeaea;
     padding: 0 8%;
+    border-radius: 0 0 5px 5px;
 }
 .count-top-bar {
     margin: 0;
@@ -292,6 +295,7 @@ font-weight: 700;
  .righ_side_border{
 	border: 5px solid #dee2e6;
 	margin-bottom: 10px;
+    border-radius: 5px;
  }
 .margin_bottom{
 	margin-bottom: 0px;
@@ -562,8 +566,12 @@ pre.ql-syntax {
 	padding: 30px;
 	height: 100%;
 	overflow: hidden;
+    border-radius: 5px;
   }
 
+.border-radius-5 {
+    border-radius: 5px;
+}
 .blog .posts-list .post-img {
 	max-height: 240px;
 	margin: -30px -30px 15px -30px;

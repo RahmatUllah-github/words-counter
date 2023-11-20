@@ -9,6 +9,9 @@
     <meta property="og:description" content="{{ $setting->meta_description }}" />
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
+    @if (config('app.env') === 'production')
+        <meta name="google-site-verification" content="a04FBOLXAtRI62zReQtXVjI0mw42FK-PHWd_TGObUFM"/>
+    @endif
     <link rel="canonical" href="{{ config('app.url') }}" />
 
     <title>{{ $setting->home_page_title ?? '' }}</title>

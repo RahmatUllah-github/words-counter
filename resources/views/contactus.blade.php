@@ -28,7 +28,7 @@
 
           <div class="row flex-md-row flex-column-reverse">
             <div class="col-lg-5 d-flex align-items-stretch">
-              <div class="info">
+              <div class="info border-radius-5">
                 <div class="address">
                   <i class="fas fa-location-arrow"></i>
                   <h4>Location:</h4>

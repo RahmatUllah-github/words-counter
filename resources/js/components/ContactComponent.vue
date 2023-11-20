@@ -1,6 +1,6 @@
 <template>
     <div class="w-100">
-        <form @submit.prevent="submit" method="post" role="form" class="php-email-form">
+        <form @submit.prevent="submit" method="post" role="form" class="php-email-form border-radius-5">
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="first_name">First Name</label>
