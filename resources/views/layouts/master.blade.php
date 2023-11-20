@@ -45,6 +45,19 @@
         // Stream Id = 5290357554
     </script> --}}
 
+    @if (config('app.env') === 'production')
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6E67QDTYJ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-M6E67QDTYJ');
+            // Stream Id = 5935467497
+        </script>
+    @endif
+
     <!-- Google tag (gtag.js) -->
 
 </head>
