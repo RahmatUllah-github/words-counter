@@ -23,7 +23,7 @@
 
                 <div class="col-lg-8">
 
-                    <article class="blog-details">
+                    <article class="blog-details mb-4">
 
                         <div class="post-img">
                             <img src="{{ $blog->image }}" alt="" class="img-fluid rounded">
@@ -31,7 +31,7 @@
 
                         <p>
                             {{ $blog->category->name }}
-                            <time class="time">({{ $blog->created_at->diffForHumans() }})</time>
+                            <time class="time">({{ $blog->published_at->diffForHumans() }})</time>
                         </p>
 
                         <h2 class="title mt-3">{{ $blog->title }}</h2>
@@ -40,6 +40,9 @@
                             {!! $blog->description !!}
                         </div>
                     </article><!-- End blog post -->
+
+                    <h4>Share Blog</h4>
+                    <share-component div-class="mt-3" blog-url="{{ Request::url() }}"></share-component>
 
                 </div>
 
@@ -61,22 +64,24 @@
                             </ul>
                         </div><!-- End sidebar categories-->
 
-                        <div class="sidebar-item recent-posts">
-                            <h3 class="sidebar-title">Recommended Posts</h3>
+                        @if ($recommends->count())
+                            <div class="sidebar-item recent-posts">
+                                <h3 class="sidebar-title">Recommended Posts</h3>
 
-                            <div class="mt-3">
-                                @foreach ($recommends as $recommend)
-                                    <div class="post-item mt-3">
-                                        <img src="{{ $recommend->image }}" alt="">
-                                        <div>
-                                            <h5><a href="{{ route('blog.show', $recommend->slug) }}">{{ Str::limit($recommend->title, 35) }}</a></h5>
-                                            <time class="time">{{ $recommend->created_at->diffForHumans() }}</time>
-                                        </div>
-                                    </div><!-- End recent post item-->
-                                @endforeach
-                            </div>
+                                <div class="mt-3">
+                                    @foreach ($recommends as $recommend)
+                                        <div class="post-item mt-3">
+                                            <img src="{{ $recommend->image }}" alt="">
+                                            <div>
+                                                <h5><a href="{{ route('blog.show', $recommend->slug) }}">{{ Str::limit($recommend->title, 40) }}</a></h5>
+                                                <time class="time">{{ $recommend->created_at->diffForHumans() }}</time>
+                                            </div>
+                                        </div><!-- End recent post item-->
+                                    @endforeach
+                                </div>
 
-                        </div><!-- End sidebar recommended posts-->
+                            </div><!-- End sidebar recommended posts-->
+                        @endif
 
                         <div class="sidebar-item recent-posts">
                             <h3 class="sidebar-title">Recent Posts</h3>
@@ -87,7 +92,7 @@
                                         <div class="post-item mt-3">
                                             <img src="{{ $recent->image }}" alt="">
                                             <div>
-                                                <h5><a href="{{ route('blog.show', $recent->slug) }}">{{ Str::limit($recent->title, 35) }}</a></h5>
+                                                <h5><a href="{{ route('blog.show', $recent->slug) }}">{{ Str::limit($recent->title, 40) }}</a></h5>
                                                 <time class="time">{{ $recent->created_at->diffForHumans() }}</time>
                                             </div>
                                         </div><!-- End recent post item-->
@@ -101,10 +106,6 @@
 
                 </div>
             </div>
-
-            <h4>Share Blog</h4>
-            <share-component div-class="mt-3" blog-url="{{ Request::url() }}"></share-component>
-
         </div>
     </section><!-- End Blog Details Section -->
 @endsection
