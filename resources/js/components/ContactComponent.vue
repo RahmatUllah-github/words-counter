@@ -55,6 +55,10 @@ export default {
                     .post('/contactus', formData)
                     .then(response => {
                         this.disableSubmit = false;
+                        this.first_name = '';
+                        this.last_name = '';
+                        this.email = '';
+                        this.message = '';
                         toast.success(response.data.message);
                     })
                     .catch(error => {
