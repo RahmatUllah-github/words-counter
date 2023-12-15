@@ -8,6 +8,7 @@ use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use DataTables;
 use Throwable;
 
@@ -20,7 +21,7 @@ class BlogController extends Controller
         if (session('search') && session('search') != '') {
             $search = session('search');
             session()->forget('search');
-            $blogs = Blog::with('category')
+            $blogs = Blog::published()->with('category')
             ->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%'.$search.'%')
                       ->orWhere('slug', 'like', '%'.$search.'%')
@@ -28,17 +29,29 @@ class BlogController extends Controller
             })
             ->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
         } else {
-            $blogs = Blog::with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+            $blogs = Blog::published()->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
         }
         return view('blogs', compact('blogs', 'setting', 'search'));
     }
 
     public function show($slug)
     {
-        $blog = Blog::where('slug', $slug)->with('category', 'user:id,name,image')->first();
-        $recommends = Blog::where('id', '!=', $blog->id)->where('category_id', $blog->category->id)->with('user:id,name,image', 'category')->limit(5)->get();
-        $recents = Blog::where('id', '!=', $blog->id)->with('user:id,name,image', 'category')->where('id', '!=', $blog->id)->orderBy('id', 'DESC')->limit(5)->get();
-        $categories = Category::whereHas('blogs')->withCount('blogs')->limit(10)->get();
+        $blog = Blog::published()->where('slug', $slug)->with('category', 'user:id,name,image')->first();
+
+        if (! $blog) {
+            abort(404);
+        }
+
+        $recommends = Blog::published()->where('id', '!=', $blog->id)->where('category_id', $blog->category->id)->with('user:id,name,image', 'category')->limit(5)->get();
+        $recents = Blog::published()->where('id', '!=', $blog->id)->with('user:id,name,image', 'category')->where('id', '!=', $blog->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $categories = Category::whereHas('blogs', function ($query) {
+            $query->published();
+        })
+        ->withCount(['blogs' => function ($query) {
+            $query->published();
+        }])
+        ->limit(10)
+        ->get();
 
         return view('blog-details', [
             'blog' => $blog,
@@ -52,7 +65,7 @@ class BlogController extends Controller
     {
         $setting = SiteSetting::first();
         $search = '';
-        $blogs = Blog::where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        $blogs = Blog::published()->where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
         return view('blogs', compact('blogs', 'setting', 'search'));
     }
 
@@ -108,7 +121,8 @@ class BlogController extends Controller
             'page_title' => 'required',
             'description' => 'required',
             'meta_keywords' => 'required',
-            'meta_description' => 'required'
+            'meta_description' => 'required',
+            'is_published' => 'required|boolean',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -129,7 +143,8 @@ class BlogController extends Controller
                 'meta_keywords' => $request->meta_keywords,
                 'meta_description' => $request->meta_description,
                 'slug' => Str::slug($request->title),
-                'description' => $request->description
+                'description' => $request->description,
+                'published_at' => (boolean) $request->is_published ? Carbon::now() : Null,
             ]);
 
             return response()->json([
@@ -164,7 +179,8 @@ class BlogController extends Controller
             'page_title' => 'required',
             'description' => 'required',
             'meta_keywords' => 'required',
-            'meta_description' => 'required'
+            'meta_description' => 'required',
+            'is_published' => 'required|boolean',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -184,7 +200,9 @@ class BlogController extends Controller
                 'page_title' => $request->page_title,
                 'description' => $request->description,
                 'meta_keywords' => $request->meta_keywords,
-                'meta_description' => $request->meta_description
+                'meta_description' => $request->meta_description,
+                'slug' => Str::slug($request->title),
+                'published_at' => (boolean) $request->is_published ? Carbon::now() : Null,
             ]);
             if ($request->image) {
                 Blog::deleteImage($blog->image);

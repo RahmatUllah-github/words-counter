@@ -16,6 +16,8 @@
                             <!-- <th>Description</th> -->
                             <th>Category</th>
                             <th>Last Updated</th>
+                            <th>Published On</th>
+                            <th>Created On</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -54,15 +56,15 @@ export default {
                         data: 'image',
                         name: 'image',
                         render: function (data, type, row, meta) {
-                            return '<img width="100" src="' + data + '" alt="Image" />';
+                            return '<img width="50" src="' + data + '" alt="Image" />';
                         }
                     },
                     {
                         data: 'title',
                         name: 'title',
                         render: function (data, type, row, meta) {
-                            if (type === 'display' && data.length > 100) {
-                                return data.substr(0, 100) + '...';
+                            if (type === 'display' && data.length > 45) {
+                                return data.substr(0, 40) + '...';
                             }
                             return data;
                         }
@@ -82,11 +84,26 @@ export default {
                         data: null,
                         name: 'last_updated',
                         render: function (data, type, row, meta) {
-                            var formattedDate = moment(row.updated_at).fromNow();
-                            return formattedDate + ' by ' + row.user.name;
+                            var formattedDate = moment(row.updated_at).format('DD-MMM-YYYY HH:mm:ss');
+                            return '<span class="badge bg-secondary">'+formattedDate+'</span>' + ' by ' + '<span class="badge bg-info">'+row.user.name+'</span>';
                         }
                     },
-
+                    {
+                        data: 'published_at',
+                        name: 'published_at',
+                        render: function (data, type, row, meta) {
+                            return row.published_at
+                                ? '<span class="badge bg-success">'+moment(row.published_at).format('DD-MMM-YYYY HH:mm:ss')+'</span>'
+                                : '<span class="badge bg-danger">Not Published</span>';
+                        }
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        render: function (data, type, row, meta) {
+                            return '<span class="badge bg-secondary">'+moment(row.created_at).format('DD-MMM-YYYY HH:mm:ss')+'</span>';
+                        }
+                    },
                     {
                         data: 'action',
                         name: 'action',

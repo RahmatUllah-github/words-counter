@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('image');
             $table->text('meta_keywords');
             $table->text('meta_description');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

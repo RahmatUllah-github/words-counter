@@ -47,7 +47,13 @@
                 <QuillEditor v-model:content="description" toolbar="full" contentType="html" id="description" class="form-control" required/>
             </div>
 
-            <button type="submit" class="btn btn-primary" :disabled="disableSubmit">Publish <span v-show="disableSubmit">...</span></button>
+            <div class="form-group mb-3 w-75">
+                <input type="checkbox" id="is_published" role="button" v-model="is_published">
+                <label for="is_published" class="form-label ms-2" role="button">Publish</label>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" :disabled="disableSubmit">Save <span v-show="disableSubmit">...</span></button>
         </form>
     </div>
 </template>
@@ -70,6 +76,7 @@ export default {
             meta_keywords: '',
             meta_description: '',
             description: '',
+            is_published: 0,
             disableSubmit: false,
         }
     },
@@ -82,6 +89,7 @@ export default {
             this.meta_keywords = this.selectedBlog.meta_keywords;
             this.meta_description = this.selectedBlog.meta_description;
             this.description = this.selectedBlog.description;
+            this.is_published = this.selectedBlog.published_at ? true : false;
         }
     },
     methods: {
@@ -113,6 +121,7 @@ export default {
                 formData.append('meta_keywords', this.meta_keywords);
                 formData.append('meta_description', this.meta_description);
                 formData.append('description', this.description);
+                formData.append('is_published', this.is_published ? 1 : 0);
 
                 this.$axios
                     .post(url, formData)
