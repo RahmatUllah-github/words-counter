@@ -5,9 +5,10 @@
     <meta name="description" content="Got questions or need help with The Words Counter? Contact us now! We're here to assist you with our handy online text analysis tools" />
     <meta property="og:title" content="The Words Counter - Contact Us" />
     <meta property="og:description" content="Got questions or need help with The Words Counter? Contact us now! We're here to assist you with our handy online text analysis tools" />
-    <meta property="og:url" content="{{ config('app.url') . 'contactus' }}" />
-    <meta property="og:image" content="{{ asset('images/logos/logo.png') }}" />
-    <link rel="canonical" href="{{ config('app.url') . 'contactus' }}" />
+    <meta property="og:url" content="{{ config('app.url') }}contactus" />
+    <meta property="og:image" content="{{ asset('images/logos/thewordscounter-logo.png') }}" />
+    <link rel="canonical" href="{{ config('app.url') }}contactus" />
+
 
     <title>The Words Counter - Contact Us</title>
 @endsection

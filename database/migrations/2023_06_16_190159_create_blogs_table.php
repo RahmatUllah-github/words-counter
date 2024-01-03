@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('title');
             $table->longText('description');
             $table->string('image');
+            $table->string('image_alt');
             $table->text('meta_keywords');
             $table->text('meta_description');
             $table->timestamp('published_at')->nullable();

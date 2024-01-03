@@ -20,6 +20,7 @@ class Blog extends Model
         'title',
         'description',
         'image',
+        'image_alt',
         'meta_keywords',
         'meta_description',
         'published_at',

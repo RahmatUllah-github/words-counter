@@ -13,6 +13,11 @@
             </div>
 
             <div class="form-group mb-3 w-75">
+                <label for="image_alt" class="form-label">Image Alt Text</label>
+                <input type="text" id="image_alt" class="form-control" v-model="image_alt" placeholder="Image Alt" required>
+            </div>
+
+            <div class="form-group mb-3 w-75">
                 <label for="category" class="form-label">Select Category</label>
                 <select id="category" class="form-control" v-model="category">
                     <option disabled value="" selected>Select Category</option>
@@ -73,6 +78,7 @@ export default {
             image: '',
             title: '',
             page_title: '',
+            image_alt: '',
             meta_keywords: '',
             meta_description: '',
             description: '',
@@ -86,6 +92,7 @@ export default {
             this.category = this.selectedBlog.category_id;
             this.title = this.selectedBlog.title;
             this.page_title = this.selectedBlog.page_title;
+            this.image_alt = this.selectedBlog.image_alt;
             this.meta_keywords = this.selectedBlog.meta_keywords;
             this.meta_description = this.selectedBlog.meta_description;
             this.description = this.selectedBlog.description;
@@ -109,13 +116,14 @@ export default {
                 }
             }
 
-            if (this.category != '' && this.title != '' && this.description != '' && this.page_title != '' && this.meta_keywords != '' && this.meta_description != '') {
+            if (this.category != '' && this.title != '' && this.image_alt != ''  && this.description != '' && this.page_title != '' && this.meta_keywords != '' && this.meta_description != '') {
                 var formData = new FormData();
                 if (this.blog != '') {
                     formData.append('id', this.selectedBlog.id ?? '');
                 }
                 formData.append('category', this.category);
                 formData.append('image', this.image);
+                formData.append('image_alt', this.image_alt);
                 formData.append('title', this.title);
                 formData.append('page_title', this.page_title);
                 formData.append('meta_keywords', this.meta_keywords);

@@ -5,9 +5,10 @@
     <meta name="description" content="{{ $blog->meta_description }}">
     <meta property="og:title" content="{{ $blog->title }}" />
     <meta property="og:description" content="{{ $blog->meta_description }}" />
-    <meta property="og:url" content="{{ config('app.url') }}/blog/{{ $blog->slug }}" />
+    <meta property="og:url" content="{{ config('app.url') }}blog/{{ $blog->slug }}" />
     <meta property="og:image" content="{{ config('app.url') }}{{ $blog->image }}" />
-    <link rel="canonical" href="{{ config('app.url') }}/blog/{{ $blog->slug }}" />
+    <link rel="canonical" href="{{ config('app.url') }}blog/{{ $blog->slug }}" />
+    <link rel="alternate" href="{{ config('app.url') }}blog/{{ $blog->slug }}" hreflang="en-us" />
     <title>{{ $blog->page_title }}</title>
 @endsection
 
@@ -26,7 +27,7 @@
                     <article class="blog-details mb-4">
 
                         <div class="post-img">
-                            <img src="{{ $blog->image }}" alt="" class="img-fluid rounded">
+                            <img src="{{ $blog->image }}" alt="{{ $blog->image_alt }}" class="img-fluid rounded">
                         </div>
 
                         <p>
@@ -71,7 +72,7 @@
                                 <div class="mt-3">
                                     @foreach ($recommends as $recommend)
                                         <div class="post-item mt-3">
-                                            <img src="{{ $recommend->image }}" alt="">
+                                            <img src="{{ $recommend->image }}" alt="{{ $recommend->image_alt }}">
                                             <div>
                                                 <h5><a href="{{ route('blog.show', $recommend->slug) }}">{{ Str::limit($recommend->title, 40) }}</a></h5>
                                                 <time class="time">{{ $recommend->created_at->diffForHumans() }}</time>
@@ -90,7 +91,7 @@
                                 <div class="mt-3">
                                     @foreach ($recents as $recent)
                                         <div class="post-item mt-3">
-                                            <img src="{{ $recent->image }}" alt="">
+                                            <img src="{{ $recent->image }}" alt="{{ $recent->image_alt }}">
                                             <div>
                                                 <h5><a href="{{ route('blog.show', $recent->slug) }}">{{ Str::limit($recent->title, 40) }}</a></h5>
                                                 <time class="time">{{ $recent->created_at->diffForHumans() }}</time>
