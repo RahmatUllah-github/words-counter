@@ -9,7 +9,7 @@
     <meta property="og:image" content="{{ asset('images/logos/thewordscounter-logo.png') }}" />
 
     <link rel="canonical" href="{{ config('app.url') }}blogs" />
-    <link rel="alternate" href="{{ config('app.url') }}" hreflang="en" />
+    <link rel="alternate" href="{{ config('app.url') }}blogs" hreflang="en" />
 
     <title>{{ $setting->blogs_page_title ?? '' }}</title>
 @endsection
