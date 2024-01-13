@@ -8,6 +8,8 @@
     <meta property="og:url" content="{{ config('app.url') }}blogs" />
     <meta property="og:image" content="{{ asset('images/logos/thewordscounter-logo.png') }}" />
 
+    <link rel="canonical" href="{{ config('app.url') }}blogs" />
+    <link rel="alternate" href="{{ config('app.url') }}" hreflang="en" />
 
     <title>{{ $setting->blogs_page_title ?? '' }}</title>
 @endsection

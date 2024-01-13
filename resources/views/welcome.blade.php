@@ -13,7 +13,7 @@
         <meta name="google-site-verification" content="a04FBOLXAtRI62zReQtXVjI0mw42FK-PHWd_TGObUFM"/>
     @endif
     <link rel="canonical" href="{{ config('app.url') }}" />
-    <link rel="alternate" href="{{ config('app.url') }}" hreflang="en-us" />
+    <link rel="alternate" href="{{ config('app.url') }}" hreflang="en" />
 
     <title>{{ $setting->home_page_title ?? '' }}</title>
 @endsection

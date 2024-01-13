@@ -8,7 +8,7 @@
     <meta property="og:url" content="{{ config('app.url') }}contactus" />
     <meta property="og:image" content="{{ asset('images/logos/thewordscounter-logo.png') }}" />
     <link rel="canonical" href="{{ config('app.url') }}contactus" />
-
+    <link rel="alternate" href="{{ config('app.url') }}" hreflang="en" />
 
     <title>The Words Counter - Contact Us</title>
 @endsection

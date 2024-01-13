@@ -8,7 +8,7 @@
     <meta property="og:url" content="{{ config('app.url') }}blog/{{ $blog->slug }}" />
     <meta property="og:image" content="{{ config('app.url') }}{{ $blog->image }}" />
     <link rel="canonical" href="{{ config('app.url') }}blog/{{ $blog->slug }}" />
-    <link rel="alternate" href="{{ config('app.url') }}blog/{{ $blog->slug }}" hreflang="en-us" />
+    <link rel="alternate" href="{{ config('app.url') }}blog/{{ $blog->slug }}" hreflang="en" />
     <title>{{ $blog->page_title }}</title>
 @endsection
 
