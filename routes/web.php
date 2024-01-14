@@ -21,13 +21,16 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [GeneralController::class, 'index'])->name('web');
-Route::view('/contactus', 'contactus')->name('contactus.index');
-Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
-Route::post('/blog/search', [BlogController::class, 'search'])->name('blogs.search');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('/category/{id}/blogs', [BlogController::class, 'categoryBlogs'])->name('category.blogs');
-Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
+Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
+
+    Route::get('/', [GeneralController::class, 'index'])->name('web');
+    Route::view('/contactus', 'contactus')->name('contactus.index');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+    Route::post('/blog/search', [BlogController::class, 'search'])->name('blogs.search');
+    Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('/category/{id}/blogs', [BlogController::class, 'categoryBlogs'])->name('category.blogs');
+    Route::post('/contactus', [ContactController::class, 'contact'])->name('contactus.save');
+});
 
 Auth::routes();
 
@@ -35,12 +38,12 @@ Auth::routes();
 //     return redirect()->route('login');
 // });
 
-Route::get('/migrate', function () {
-    Artisan::call('migrate:fresh');
-    Artisan::call('optimize:clear');
+// Route::get('/migrate', function () {
+//     Artisan::call('migrate:fresh');
+//     Artisan::call('optimize:clear');
 
-    return 'done';
-});
+//     return 'done';
+// });
 
 Route::get('/clear', function () {
     Artisan::call('optimize:clear');
@@ -71,5 +74,4 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::post('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
     Route::get('/site-settings', [SiteSettingsController::class, 'adminSiteSettings'])->name('site-settings.index');
     Route::post('/site-settings', [SiteSettingsController::class, 'saveSetting'])->name('site-settings.save');
-
 });

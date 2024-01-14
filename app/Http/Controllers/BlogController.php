@@ -65,7 +65,13 @@ class BlogController extends Controller
     {
         $setting = SiteSetting::first();
         $search = '';
-        $blogs = Blog::published()->where('category_id', $id)->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+        $blogs = Blog::published()->whereHas('category', function ($query) use ($id) {
+            $query->where('id', $id)->whereHas('blogs');
+        })->with('category')->orderBy('id', 'DESC')->paginate($setting->blogs_per_page ?? 12);
+
+        if (! $blogs || ! $blogs->count()) {
+            abort(404);
+        }
         return view('blogs', compact('blogs', 'setting', 'search'));
     }
 

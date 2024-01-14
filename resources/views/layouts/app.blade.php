@@ -18,8 +18,8 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="/public/build/assets/app-7587c9eb.css" />
    <script type="module" src="/public/build/assets/app-73a301d2.js"></script>
-   
-    <link rel="stylesheet" href="/public/css/style.css">
+
+    <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
     <div id="app">
