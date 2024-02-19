@@ -51,7 +51,7 @@ class Blog extends Model
     // Define the accessor for the image attribute
     public function getImageAttribute($value)
     {
-        return '/storage/' . $value;
+        return 'storage/' . $value;
     }
 
     public static function deleteImage($filePath)

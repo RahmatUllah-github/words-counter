@@ -4,9 +4,11 @@
     <meta name="keywords" content="{{ $blog->meta_keywords }}">
     <meta name="description" content="{{ $blog->meta_description }}">
     <meta property="og:title" content="{{ $blog->title }}" />
+    <meta property="og:type" content="article" />
     <meta property="og:description" content="{{ $blog->meta_description }}" />
     <meta property="og:url" content="{{ config('app.url') }}blog/{{ $blog->slug }}" />
     <meta property="og:image" content="{{ config('app.url') }}{{ $blog->image }}" />
+    <meta property="og:site_name" content="The Words Counter" />
     <link rel="canonical" href="{{ config('app.url') }}blog/{{ $blog->slug }}" />
     <link rel="alternate" href="{{ config('app.url') }}blog/{{ $blog->slug }}" hreflang="en" />
     <title>{{ $blog->page_title }}</title>
@@ -27,13 +29,23 @@
                     <article class="blog-details mb-4">
 
                         <div class="post-img">
-                            <img src="{{ $blog->image }}" alt="{{ $blog->image_alt }}" class="img-fluid rounded">
+                            <img src="{{ config('app.url') }}{{ $blog->image }}" alt="{{ $blog->image_alt }}" class="img-fluid rounded">
                         </div>
 
                         <p>
                             {{ $blog->category->name }}
                             <time class="time">({{ $blog->published_at->diffForHumans() }})</time>
                         </p>
+                        <!-- Software -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-3394853939096800"
+                             data-ad-slot="1965248351"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
 
                         <h2 class="title mt-3">{{ $blog->title }}</h2>
 
@@ -72,7 +84,7 @@
                                 <div class="mt-3">
                                     @foreach ($recommends as $recommend)
                                         <div class="post-item mt-3">
-                                            <img src="{{ $recommend->image }}" alt="{{ $recommend->image_alt }}">
+                                            <img src="{{ config('app.url') }}{{ $recommend->image }}" alt="{{ $recommend->image_alt }}">
                                             <div>
                                                 <h5><a href="{{ route('blog.show', $recommend->slug) }}">{{ Str::limit($recommend->title, 40) }}</a></h5>
                                                 <time class="time">{{ $recommend->created_at->diffForHumans() }}</time>
@@ -91,7 +103,7 @@
                                 <div class="mt-3">
                                     @foreach ($recents as $recent)
                                         <div class="post-item mt-3">
-                                            <img src="{{ $recent->image }}" alt="{{ $recent->image_alt }}">
+                                            <img src="{{ config('app.url') }}{{ $recent->image }}" alt="{{ $recent->image_alt }}">
                                             <div>
                                                 <h5><a href="{{ route('blog.show', $recent->slug) }}">{{ Str::limit($recent->title, 40) }}</a></h5>
                                                 <time class="time">{{ $recent->created_at->diffForHumans() }}</time>

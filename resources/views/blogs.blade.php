@@ -40,7 +40,7 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="{{ $blog->image }}" alt="" class="img-fluid w-100">
+                                <img src="{{ config('app.url') }}{{ $blog->image }}" alt="" class="img-fluid w-100">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p class="post-category">{{ $blog->category->name }}</p>
