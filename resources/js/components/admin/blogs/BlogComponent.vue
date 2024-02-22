@@ -56,7 +56,7 @@ export default {
                         data: 'image',
                         name: 'image',
                         render: function (data, type, row, meta) {
-                            return '<img width="50" src="' + data + '" alt="Image" />';
+                            return '<img width="50" src="/' + data + '" alt="Image" />';
                         }
                     },
                     {
