@@ -37,7 +37,7 @@
                             <time class="time">({{ $blog->published_at->diffForHumans() }})</time>
                         </p>
                         <!-- Software -->
-                        <ins class="adsbygoogle"
+                        {{-- <ins class="adsbygoogle"
                              style="display:block"
                              data-ad-client="ca-pub-3394853939096800"
                              data-ad-slot="1965248351"
@@ -45,11 +45,11 @@
                              data-full-width-responsive="true"></ins>
                         <script>
                              (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+                        </script> --}}
 
                         <h2 class="title mt-3">{{ $blog->title }}</h2>
 
-                        <div class="content mt-5">
+                        <div class="content mt-4">
                             {!! $blog->description !!}
                         </div>
                     </article><!-- End blog post -->

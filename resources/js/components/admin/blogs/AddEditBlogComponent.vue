@@ -88,7 +88,7 @@ export default {
     },
     mounted() {
         if (this.action == 'Edit') {
-            this.imageSrc = this.selectedBlog.image;
+            this.imageSrc = '/' + this.selectedBlog.image;
             this.category = this.selectedBlog.category_id;
             this.title = this.selectedBlog.title;
             this.page_title = this.selectedBlog.page_title;
